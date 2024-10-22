@@ -42,3 +42,5 @@
 
 Gemfile.lock
 yarn.lock
+
+/.github
