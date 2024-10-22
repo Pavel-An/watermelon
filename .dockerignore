@@ -3,6 +3,7 @@
 # Ignore git directory.
 /.git/
 /.gitignore
+/.gitattributes
 
 # Ignore bundler config.
 /.bundle
@@ -46,3 +47,13 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
+/.cache
+/.local
+/.npm
+/.yarn
+/.yarnrc
+
+/config/database.yml.example
+/Gemfile.lock
+
+/yarn.lock
