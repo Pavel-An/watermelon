@@ -48,6 +48,6 @@
 /.dockerignore
 /Dockerfile*
 /docker-compose*
-/pg
-/pgadmin
+/pg/*
+/pgadmin/
 
