@@ -3,7 +3,6 @@
 # Ignore git directory.
 /.git/
 /.gitignore
-/.gitattributes
 
 # Ignore bundler config.
 /.bundle
@@ -47,7 +46,3 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
-/docker-compose*
-/pg/*
-/pgadmin/
-
