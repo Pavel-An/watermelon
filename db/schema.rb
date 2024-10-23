@@ -26,9 +26,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_23_060425) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 100, null: false
     t.text "description"
-    t.integer "status"
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,10 +36,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_23_060425) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.integer "admin", default: 0, null: false
+    t.boolean "admin", default: false, null: false
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
