@@ -46,6 +46,7 @@
 /.yarn
 /.yarnrc
 /.bash_history
+/.irb_history
 
 Dockerfile*
 Gemfile.lock
