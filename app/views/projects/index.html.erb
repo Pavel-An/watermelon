@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <% @projects.each do |project| %>
+    <div class="row text-primary m-2 p-2 border border-primary border-2 rounded-2">
+      <h3><%= project.name %></h3>
+    </div>
+  <% end %>
+</div>
