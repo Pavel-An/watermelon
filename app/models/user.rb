@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :project_members
   has_many :projects, through: :project_members
 
-  validates :email, presence: true, :uniqueness
+  validates :email, presence: true, uniqueness: true
   validates :admin, inclusion: [true, false]
 end
