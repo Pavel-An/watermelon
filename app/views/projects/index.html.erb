@@ -1,7 +1,18 @@
 <div class="container-fluid">
-  <% @projects.each do |project| %>
-    <div class="row text-primary m-2 p-2 border border-primary border-2 rounded-2">
-      <h3><%= project.name %></h3>
-    </div>
-  <% end %>
+  <div class="conteiner ">
+    <%= link_to "New project", new_projects_path, class: "btn btn-primary", role: "button" %>
+  </div>
+  <div class="conteiner m-3">
+    <% @projects.each do |project| %>
+      <div class="row text-primary my-2 mx-0 p-2 border border-primary border-2 rounded-2 position-relative">
+        <div class="col">
+          <h5 class="mt-0"><%= project.name%></h5>
+          <% unless project.description.blank? %>
+            <p><%= project.description %></p>
+          <% end %>
+          <%= link_to "Go project", "#", class: "stretched-link link-opacity-50" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

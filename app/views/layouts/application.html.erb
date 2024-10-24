@@ -7,8 +7,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
     
     <%= yield :head %>
 
@@ -20,8 +19,13 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body >
     <%= render "layouts/header" %>
-    <%= yield %>
+    <div class="conteiner-fluid" style="margin-top: 66px;">
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: "alert alert-#{name}", role: "alert" %>
+      <% end -%>
+      <%= yield %>
+    </div>
   </body>
 </html>

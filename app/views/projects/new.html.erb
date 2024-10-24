@@ -1,0 +1,13 @@
+<div class="container  border border-primary border-2 rounded-2 p-3">
+  <%= form_with model: @project do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_field :description, class: "form-control" %>
+    </div>
+    <%= form.submit "Create", class: "btn btn-primary" %>
+  <% end %>
+</div>
