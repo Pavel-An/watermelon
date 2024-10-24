@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_23_060425) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "project_members", id: false, force: :cascade do |t|
+  create_table "project_members", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
     t.text "permissions"
@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_23_060425) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.boolean "admin", default: false, null: false
+    t.integer "role", default: 0, null: false
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
