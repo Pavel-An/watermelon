@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="conteiner ">
-    <%= link_to "New project", new_projects_path, class: "btn btn-primary", role: "button" %>
+    <%= link_to "New project", new_project_path, class: "btn btn-primary", role: "button" %>
   </div>
   <div class="conteiner m-3">
     <% @projects.each do |project| %>
@@ -10,7 +10,7 @@
           <% unless project.description.blank? %>
             <p><%= project.description %></p>
           <% end %>
-          <%= link_to "Go project", "#", class: "stretched-link link-opacity-50" %>
+          <%= link_to "Go project", project_path(project), class: "stretched-link link-opacity-50" %>
         </div>
       </div>
     <% end %>
