@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   enum role: { user: 0, admin: 1 }
 
-  has_many :project_members
-  has_many :projects, through: :project_members
+  has_many :members
+  has_many :projects, through: :members
 
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true

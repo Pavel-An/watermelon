@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
 
     if @project.save
       flash[:success] = "Project create"
-      @project.project_members.create(user_id: current_user.id)
+      @project.members.create(user_id: current_user.id)
       redirect_to(@project)
     else
       flash.now[:danger] = "Project don\'t create"

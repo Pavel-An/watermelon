@@ -14,15 +14,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_23_060425) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "project_members", force: :cascade do |t|
+  create_table "members", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
-    t.text "permissions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id", "user_id"], name: "index_project_members_on_project_id_and_user_id", unique: true
-    t.index ["project_id"], name: "index_project_members_on_project_id"
-    t.index ["user_id"], name: "index_project_members_on_user_id"
+    t.index ["project_id", "user_id"], name: "index_members_on_project_id_and_user_id", unique: true
+    t.index ["project_id"], name: "index_members_on_project_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -49,6 +48,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_23_060425) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "project_members", "projects"
-  add_foreign_key "project_members", "users"
+  add_foreign_key "members", "projects"
+  add_foreign_key "members", "users"
 end

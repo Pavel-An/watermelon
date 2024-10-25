@@ -4,6 +4,6 @@ class Project < ApplicationRecord
   validates :name, presence: true, length: { maximum: 100 }
   validates :status, presence: true
 
-  has_many :project_members, dependent: :destroy
-  has_many :users, through: :project_members
+  has_many :members, dependent: :destroy
+  has_many :users, through: :members
 end
