@@ -7,9 +7,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    
     <%= yield :head %>
 
     <link rel="manifest" href="/manifest.json">
@@ -19,9 +16,24 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
+  <body >
+    <%= render "layouts/header" %>
+    <div class="conteiner-fluid" style="margin-top: 66px;">
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: "alert alert-#{name}", role: "alert" %>
+      <% end -%>
+      <div class="conteiner p-2">
+        <div class="row justify-content-start gx-0">
+          <% unless @project.nil? || @project.new_record?%>
+            <%= render "layouts/project_menu" %>
+          <% end %>
+          <div class="col">
 
-  <body>
-
-    <%= yield %>
+            <%= yield %>
+            
+          </div>
+        </div>
+    </div>
+    <%= render "layouts/footer" %>
   </body>
 </html>

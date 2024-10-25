@@ -1,0 +1,6 @@
+<div class="container px-5">
+  <%= form_with model: @project do |form| %>
+    <%= render partial: "form", locals: { form: form } %>
+    <%= form.submit "Update", class: "btn btn-primary" %>
+  <% end %>
+</div>
