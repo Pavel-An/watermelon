@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_project, only %i[show edit update destroy]
+  before_action :find_project, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @projects = current_user.projects
