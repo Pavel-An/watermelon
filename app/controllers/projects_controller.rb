@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
 
-  def index 
+  def index
     @projects = current_user.projects
   end
 
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
   end
-  
+
   def update
     @project = Project.find(params[:id])
 
@@ -48,8 +48,6 @@ class ProjectsController < ApplicationController
 
     flash[:success] = "project has been deleted"
     redirect_to action: :index
-
-
   end
 
   private
