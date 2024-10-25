@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     if @project.save
       flash[:success] = "Project create"
       @project.members.create(user_id: current_user.id)
-      redirect_to(@project)
+      redirect_to @project
     else
       flash.now[:danger] = "Project don\'t create"
       render :new, status: :unprocessable_entity
@@ -27,9 +27,19 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:id])
   end
   
   def update
+    @project = Project.find(params[:id])
+
+    if @project.update(project_params)
+      flash[:success] = "Project update"
+      redirect_to @project
+    else
+      flash.now[:danger] = "Project don\'t create"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
