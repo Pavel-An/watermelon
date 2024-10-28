@@ -32,7 +32,7 @@
 
     <%- resource_class.omniauth_providers.each do |provider| %>
       <% if provider.name == "google_oauth2" %>
-        <%= link_to omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "icon-link" do %>
+        <%= button_to omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "btn btn-lg btn-outline-primary" do %>
           <i class="bi bi-google"></i>
         <% end %>
       <% else %>
