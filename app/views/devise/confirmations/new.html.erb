@@ -1,16 +1,20 @@
-<h2>Resend confirmation instructions</h2>
+<main class="form-confirmation w-100 m-auto">
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <h1 class="h3 mb-3 fw-normal">Send instructions</h1>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
+    <div class="form-floating">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",
+          value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), 
+          placeholder: "name@example.com", class: "form-control" %>
+      <%= f.label :email %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
+    <%= f.submit "Send", class: "btn btn-primary w-100 py-2" %>
+  <% end %>
+</main>
 
-<%= render "devise/shared/links" %>
+<div class="text-center">
+  <%= render "devise/shared/links" %>
+</div>

@@ -54,6 +54,3 @@
 /.yarnrc
 
 /config/database.yml.example
-/Gemfile.lock
-
-/yarn.lock

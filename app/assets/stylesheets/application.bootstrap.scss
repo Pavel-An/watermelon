@@ -1,2 +1,52 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import "bootstrap-icons/font/bootstrap-icons";
+@font-face {
+  font-family: "bootstrap-icons";
+  src: font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff2") format("woff2"),
+    font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff") format("woff");
+  }
+
+html {
+  height: 100%;
+  overflow: auto;
+}
+
+body {
+  height: calc(100% - 120px);
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+.form-signin, .form-confirmation, .form-signup {
+  max-width: 330px;
+  padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signup .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signup .form-floating, .form-confirmation .form-floating  {
+  margin-bottom: 10px;
+}
+
+.form-confirmation .form-floating:focus-within {
+  z-index: 2;
+}

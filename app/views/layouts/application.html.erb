@@ -16,8 +16,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
-  <body >
-    <%= render "layouts/header" %>
+  <body>
+    <% if user_signed_in? %>
+      <%= render "layouts/header" %>
+    <% end %>
     <div class="conteiner-fluid" style="margin-top: 66px;">
       <% flash.each do |name, msg| -%>
         <%= content_tag :div, msg, class: "alert alert-#{name}", role: "alert" %>
