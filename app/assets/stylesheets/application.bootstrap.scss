@@ -33,3 +33,16 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.form-signup {
+  max-width: 330px;
+  padding: 1rem;
+}
+
+.form-signup .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signup .form-floating {
+  margin-bottom: 10px;
+}
