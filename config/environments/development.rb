@@ -81,12 +81,12 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:         'smtp.gmail.com',
+    address:         "smtp.gmail.com",
     port:            587,
-    domain:          'watermelon.com',
+    domain:          "watermelon.com",
     user_name:       ENV["WM_MAIL_USER_NAME"],
     password:        ENV["WM_MAIL_USER_PASSWORD"],
-    authentication:  'plain',
+    authentication:  "plain",
     enable_starttls: true,
     open_timeout:    5,
     read_timeout:    5 }

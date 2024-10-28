@@ -7,13 +7,12 @@
     font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff") format("woff");
   }
 
-
 html,
 body {
   height: 100%;
 }
 
-.form-signin {
+.form-signin, .form-confirmation, .form-signup {
   max-width: 330px;
   padding: 1rem;
 }
@@ -34,28 +33,14 @@ body {
   border-top-right-radius: 0;
 }
 
-.form-signup {
-  max-width: 330px;
-  padding: 1rem;
-}
-
 .form-signup .form-floating:focus-within {
   z-index: 2;
 }
 
-.form-signup .form-floating {
+.form-signup .form-floating, .form-confirmation .form-floating  {
   margin-bottom: 10px;
-}
-
-.form-confirmation {
-  max-width: 330px;
-  padding: 1rem;
 }
 
 .form-confirmation .form-floating:focus-within {
   z-index: 2;
-}
-
-.form-confirmation .form-floating {
-  margin-bottom: 10px;
 }

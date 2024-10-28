@@ -1,5 +1,3 @@
-
-
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <div class="text-center">
     <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
@@ -7,7 +5,9 @@
 <% end %>
 
 <%- if controller_name != 'sessions' %>
-  Have already an account? <%= link_to "Login here", new_session_path(resource_name) %>
+  <div class="text-center">
+    Have already an account? <%= link_to "Login here", new_session_path(resource_name) %>
+  </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
@@ -40,6 +40,4 @@
       <% end %>
     <% end %>
   </div>
-
-
 <% end %>

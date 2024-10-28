@@ -26,10 +26,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if user.present?
       sign_out_all_scopes
-      flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
+      flash[:success] = t "devise.omniauth_callbacks.success", kind: "Google"
       sign_in_and_redirect user, event: :authentication
     else
-      flash[:danger] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
+      flash[:danger] = t "devise.omniauth_callbacks.failure", kind: "Google", reason: "#{auth.info.email} is not authorized."
       redirect_to new_user_session_path
     end
    end
@@ -42,7 +42,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
    end
 
    def auth
-     @auth ||= request.env['omniauth.auth']
+     @auth ||= request.env["omniauth.auth"]
    end
 
   # protected
