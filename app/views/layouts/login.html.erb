@@ -16,24 +16,15 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
-  <body>
-    <% if user_signed_in? %>
-      <%= render "layouts/header" %>
-    <% end %>
-    <div class="conteiner-fluid" style="margin-top: 66px;">
-      <%= render 'layouts/messages' %>
-      <div class="conteiner p-2">
-        <div class="row justify-content-start gx-0">
-          <% unless @project.nil? || @project.new_record?%>
-            <%= render "layouts/project_menu" %>
-          <% end %>
-          <div class="col">
-
-            <%= yield %>
-            
-          </div>
+  
+  <body class="login">
+    <%= render 'layouts/messages' %>
+    <div class="container text-center">
+      <div class="row align-items-center">
+        <div class="col">
+          <%= yield %>
         </div>
+      </div>
     </div>
-    <%= render "layouts/footer" %>
   </body>
 </html>

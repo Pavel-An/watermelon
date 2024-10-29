@@ -17,35 +17,33 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   # GET|POST /users/auth/twitter/callback
-  def failure
-    super
-  end
+  # def failure
+  #   super
+  # end
 
   def google_oauth2
-    user = User.from_google(from_google_params)
+    @user = User.from_omniauth(auth)
 
-    if user.present?
-      sign_out_all_scopes
-      flash[:success] = t "devise.omniauth_callbacks.success", kind: "Google"
-      sign_in_and_redirect user, event: :authentication
+    if @user.persisted?
+      sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
+      set_flash_message(:success, :success, kind: "Google") if is_navigational_format?
     else
-      flash[:danger] = t "devise.omniauth_callbacks.failure", kind: "Google", reason: "#{auth.info.email} is not authorized."
-      redirect_to new_user_session_path
+      session["devise.google_oauth2_data"] = auth.except(:extra) # Removing extra as it can overflow some session stores
+      redirect_to new_user_registration_url
     end
-   end
+  end
 
-   def from_google_params
-     @from_google_params ||= {
-       uid: auth.uid,
-       email: auth.info.email
-     }
-   end
+  def failure
+    redirect_to root_path
+    set_flash_message(:danger, :error, kind: "Google") if is_navigational_format?
+  end
+
 
    def auth
      @auth ||= request.env["omniauth.auth"]
    end
 
-  # protected
+  protected
 
   # The path used when OmniAuth fails
   def after_omniauth_failure_path_for(scope)
