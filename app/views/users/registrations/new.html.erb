@@ -1,7 +1,7 @@
 <main class="form-signup w-100 m-auto">
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= devise_error_messages! %>
 
     <h1 class="h3 mb-3 fw-normal">Create an account</h1>
 

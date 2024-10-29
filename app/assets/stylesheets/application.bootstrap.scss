@@ -18,6 +18,12 @@ body {
   margin-bottom: 50px;
 }
 
+body.login {
+  height: calc(100% - 20px);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .form-signin, .form-confirmation, .form-signup {
   max-width: 330px;
   padding: 1rem;
@@ -49,4 +55,33 @@ body {
 
 .form-confirmation .form-floating:focus-within {
   z-index: 2;
+}
+
+/*flash*/
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-alert {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+.alert-notice {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
 }
