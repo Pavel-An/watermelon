@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :members
   has_many :projects, through: :members
+  has_one_attached :avatar
 
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true
