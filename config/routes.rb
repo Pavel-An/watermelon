@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   resources :projects do
     resources :members
   end
+
+  resources :users, only: [:show]
 end

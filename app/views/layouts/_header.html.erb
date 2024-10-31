@@ -14,7 +14,7 @@
         <li class="nav-item dropdown">
           <%= link_to "Account", "#", class: "nav-link active dropdown-toggle", role: "button", "data-bs-toggle": "dropdown", "aria-expanded": "false" %>
           <ul class="dropdown-menu dropdown-menu-end p-2 rounded-3 mx-0 border-0 shadow" data-bs-theme="dark">
-            <li><%= link_to "Profile", "#", class: "dropdown-item rounded-2 active" %></li>
+            <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item rounded-2" %></li>
             <li><hr class="dropdown-divider"></li>
             <li><%= link_to "Logout", destroy_user_session_path, class: "dropdown-item rounded-2", data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?'} %></li>
           </ul>
