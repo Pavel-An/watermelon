@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   enum role: { user: 0, admin: 1 }
 
+  belongs_to :post
+  belongs_to :department
   has_many :members
   has_many :projects, through: :members
   has_one_attached :avatar do |attachable|
