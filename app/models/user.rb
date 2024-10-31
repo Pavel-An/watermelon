@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]
   end
+  accepts_nested_attributes_for :phones
 
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true

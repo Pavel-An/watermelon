@@ -10,7 +10,9 @@
             <% else %>
              <h5>No name</h5>
             <% end %>
-            <i class="bi bi-pencil-square"></i>
+            <%= link_to edit_user_path(@user), class: "btn btn-lg btn-outline-primary", role: "button"  do %>
+                <i class="bi bi-pencil-square"></i>
+            <% end %>
           </div>
           <div class="col-md-8">
             <div class="card-body p-4">
@@ -43,7 +45,11 @@
                   <h6>Post</h6>
                 </div>
                 <div class="col-8">
-                  <p class="text-muted"><%= @user.post.name %></p>                 
+                  <% if @user.post_id? %>
+                    <p class="text-muted"><%= @user.post.name %></p>
+                  <% else %>
+                    <p class="text-muted">no data</p>
+                  <% end %>                
                 </div>
               </div>
               <div class="row pt-1">

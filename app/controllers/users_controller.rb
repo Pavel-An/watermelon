@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [ :show ]
+  before_action :find_user, only: [ :show, :edit, :update ]
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   private
