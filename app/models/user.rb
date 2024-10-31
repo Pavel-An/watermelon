@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   belongs_to :post
   belongs_to :department
+  has_many :phones
   has_many :members
   has_many :projects, through: :members
   has_one_attached :avatar do |attachable|

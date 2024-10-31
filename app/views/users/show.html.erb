@@ -24,30 +24,34 @@
                   <p class="text-muted"><%= @user.email %></p>
                 </div>
               </div>
-              <div class="row pt-1 mb-1">
+              <div class="row pt-1 mb-4">
                 <div class="col-4">
                   <h6>Phone</h6>
                 </div>
                 <div class="col-8">
-                  <p class="text-muted">123 456 789</p>
+                  <% unless  @user.phones.blank? %>
+                    <% @user.phones.each do |phone| %>
+                      <p class="text-muted m-0"><%= phone. number%></p>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
               <h6 class="text-primary fw-semibold">Information</h6>
               <hr class="mt-0 mb-2 border-primary">
               <div class="row pt-1">
                 <div class="col-4">
-                  <h6>Department</h6>
+                  <h6>Post</h6>
                 </div>
                 <div class="col-8">
-                  <p class="text-muted"><%= @user.department.name %></p>
+                  <p class="text-muted"><%= @user.post.name %></p>                 
                 </div>
               </div>
               <div class="row pt-1">
                 <div class="col-4">
-                  <h6>Post</h6>
+                  <h6>Department</h6>
                 </div>
                 <div class="col-8">
-                  <p class="text-muted"><%= @user.post.name %></p>
+                  <p class="text-muted"><%= @user.department.name %></p>
                 </div>
               </div>
               </div>
