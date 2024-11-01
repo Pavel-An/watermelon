@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_31_074308) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_01_082717) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,7 +66,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_31_074308) do
     t.index ["user_id"], name: "index_phones_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "positions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,6 +78,24 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_31_074308) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_departments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "department_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_user_departments_on_department_id"
+    t.index ["user_id"], name: "index_user_departments_on_user_id"
+  end
+
+  create_table "user_positions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "position_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["position_id"], name: "index_user_positions_on_position_id"
+    t.index ["user_id"], name: "index_user_positions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,15 +113,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_31_074308) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-    t.string "name"
-    t.string "surname"
-    t.string "patronymic"
-    t.bigint "post_id"
-    t.bigint "department_id"
+    t.string "firstname"
+    t.string "lastname"
+    t.string "middlename"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["post_id"], name: "index_users_on_post_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -111,6 +125,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_31_074308) do
   add_foreign_key "members", "projects"
   add_foreign_key "members", "users"
   add_foreign_key "phones", "users"
-  add_foreign_key "users", "departments"
-  add_foreign_key "users", "posts"
+  add_foreign_key "user_departments", "departments"
+  add_foreign_key "user_departments", "users"
+  add_foreign_key "user_positions", "positions"
+  add_foreign_key "user_positions", "users"
 end

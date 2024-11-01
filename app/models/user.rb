@@ -6,8 +6,10 @@ class User < ApplicationRecord
 
   enum role: { user: 0, admin: 1 }
 
-  belongs_to :post
-  belongs_to :department
+  has_one :user_position
+  has_one :position, through: :user_position
+  has_one :user_department
+  has_one :department, through: :user_department
   has_many :phones
   has_many :members
   has_many :projects, through: :members

@@ -1,19 +1,27 @@
 module UsersHelper
-  def posts_list
-    arr = [["no data", nil]]
-
-    Post.all.each do |post|
-      arr << [post.name, post.id]
-    end
-    arr
+  def positions_list
+    Position.pluck(:name, :id)
   end
 
   def departments_list
-    arr = [["no data", nil]]
-
-    Department.all.each do |department|
-      arr << [department.name, department.id]
-    end
+    arr = Department.pluck(:name, :id)
+    # arr << ["", nil]
     arr
+  end
+
+  def user_department(user)
+    if user.department.blank?
+      nil
+    else
+      user.department.id
+    end
+  end
+
+  def user_position(user)
+    if user.position.blank?
+      nil
+    else
+      user.position.id
+    end
   end
 end

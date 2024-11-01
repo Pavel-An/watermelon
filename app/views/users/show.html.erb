@@ -4,9 +4,9 @@
         <div class="row g-0">
           <div class="col-md-4 text-center border-top-left-radius border-bottom-left-radius">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar" class="img-fluid my-5" style="width: 80px;">
-            <% if @user.name? || @user.surname? || @user.patronymic? %>
-              <h5><%= @user.name %> <%= @user.surname %></h5>
-              <h5><%= @user.patronymic %></h5>
+            <% if @user.firstname? || @user.lastname? || @user.middlename? %>
+              <h5><%= @user.firstname %> <%= @user.lastname %></h5>
+              <h5><%= @user.middlename %></h5>
             <% else %>
              <h5>No name</h5>
             <% end %>
@@ -35,7 +35,9 @@
                     <% @user.phones.each do |phone| %>
                       <p class="text-muted m-0"><%= phone. number%></p>
                     <% end %>
-                  <% end %>
+                  <% else %>
+                    <p class="text-muted">no data</p>
+                  <% end %> 
                 </div>
               </div>
               <h6 class="text-primary fw-semibold">Information</h6>
@@ -45,8 +47,8 @@
                   <h6>Post</h6>
                 </div>
                 <div class="col-8">
-                  <% if @user.post_id? %>
-                    <p class="text-muted"><%= @user.post.name %></p>
+                  <% unless @user.position.blank? %>
+                    <p class="text-muted"><%= @user.position.name %></p>
                   <% else %>
                     <p class="text-muted">no data</p>
                   <% end %>                
@@ -57,7 +59,11 @@
                   <h6>Department</h6>
                 </div>
                 <div class="col-8">
-                  <p class="text-muted"><%= @user.department.name %></p>
+                  <% unless @user.department.blank? %>
+                    <p class="text-muted"><%= @user.department.name %></p>
+                  <% else %>
+                    <p class="text-muted">no data</p>
+                  <% end %>  
                 </div>
               </div>
               </div>
