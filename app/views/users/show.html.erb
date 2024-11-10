@@ -2,15 +2,17 @@
   <div class="col col-lg-7 mb-4 mb-lg-0">
     <div class="card border-radius border-primary">
         <div class="row g-0">
-          <div class="col-md-4 text-center border-top-left-radius border-bottom-left-radius">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar" class="img-fluid my-5" style="width: 80px;">
-            <% if @user.firstname? || @user.lastname? || @user.middlename? %>
+          <div class="col-4 text-center border-top-left-radius border-bottom-left-radius">
+            <div class="text-center">
+              <%= image_tag @user.avatar.variant(resize_to_limit: [128, 128]).processed, class: "rounded-circle mt-5 mb-2" %>
+            </div>
+          <% if @user.firstname? || @user.lastname? || @user.middlename? %>
               <h5><%= @user.firstname %> <%= @user.lastname %></h5>
               <h5><%= @user.middlename %></h5>
             <% else %>
              <h5>No name</h5>
             <% end %>
-            <%= link_to edit_user_path(@user), class: "btn btn-lg btn-outline-primary", role: "button"  do %>
+            <%= link_to edit_user_path(@user), class: "btn btn-lg btn-outline-primary my-2", role: "button"  do %>
                 <i class="bi bi-pencil-square"></i>
             <% end %>
           </div>

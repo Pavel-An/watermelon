@@ -16,6 +16,7 @@ body {
   height: calc(100% - 120px);
   margin-top: 70px;
   margin-bottom: 50px;
+  overflow: inherit;
 }
 
 body.login {
