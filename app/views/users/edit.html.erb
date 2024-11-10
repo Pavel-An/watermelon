@@ -20,7 +20,8 @@
               <% end %>
             </div>
             <div class="col-md-8 ml-2">
-              <%= form.file_field :avatar, class: "form-control" %>
+            <%= form.label :avatar, "Add avatar", class: "btn btn-outline-primary" %>
+              <%= form.file_field :avatar, class: "form-control", style: "display: none;" %>
             </div>
           </div>
           <div class="row g-0 mb-2">
