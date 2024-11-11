@@ -4,7 +4,11 @@
         <div class="row g-0">
           <div class="col-4 text-center border-top-left-radius border-bottom-left-radius">
             <div class="text-center">
-              <%= image_tag @user.avatar.variant(resize_to_limit: [128, 128]).processed, class: "rounded-circle mt-5 mb-2" %>
+              <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar.variant(resize_to_limit: [128, 128]).processed, class: "rounded-circle mt-5 mb-2" %>
+              <% else %> 
+                <i class="bi bi-card-image" style="font-size: 8rem; color: cornflowerblue;"></i>
+              <% end %>
             </div>
           <% if @user.firstname? || @user.lastname? || @user.middlename? %>
               <h5><%= @user.firstname %> <%= @user.lastname %></h5>

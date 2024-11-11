@@ -9,19 +9,22 @@
     <%= form_with model: @user do |form|%>
       <div class="card">
         <div class="card-body p-4">
-          <div class="row g-0 mb-2">
+          <div class="row g-0 mb-2" data-controller="image-preview">
             <h6 class="text-primary fw-semibold" >Avatar</h6>
             <hr class="mt-0 mb-2 border-primary">
-            <div class="col-md-4 text-center">
+            <div class="col-md-4 text-center" data-image-preview-target="avatar">
               <% if @user.avatar.attached? %>
-                <%= image_tag @user.avatar.variant(resize_to_limit: [128, 128]).processed %>
+                <%= image_tag @user.avatar.variant(resize_to_limit: [128, 128]).processed,  class: "rounded-circle" %>
               <% else %> 
                 <i class="bi bi-card-image" style="font-size: 8rem; color: cornflowerblue;"></i>
               <% end %>
             </div>
+            <div class="col-md-4 text-center" data-image-preview-target="preview" hidden>
+              <img data-image-preview-target="canvas"  class="rounded-circle" width="128" height="128" >
+            </div>
             <div class="col-md-8 ml-2">
-            <%= form.label :avatar, "Add avatar", class: "btn btn-outline-primary" %>
-              <%= form.file_field :avatar, class: "form-control", style: "display: none;" %>
+              <%= form.label :avatar, "Add avatar", class: "btn btn-outline-primary" %>
+              <%= form.file_field :avatar, accept: "image/*", "data-image-preview-target": "source", hidden: "", class: "form-control", "data-action": "image-preview#show" %>
             </div>
           </div>
           <div class="row g-0 mb-2">
@@ -70,10 +73,12 @@
             <h6 class="text-primary fw-semibold" >Company</h6>
             <hr class="mt-0 mb-2 border-primary">
             <div class="row mb-3">
-              <%= form.label :position, class: "col-sm-2 col-form-label" %>
-              <div class="col-sm-10">
-                <%= form.select :position, positions_list, { include_blank: true } , { class: "form-select" } %>
-              </div>
+              <%= form.fields_for :user_position, @user.build_user_position do |position_form| %>
+                <%= position_form.label :position_id, class: "col-sm-2 col-form-label" %>
+                <div class="col-sm-10">
+                  <%= position_form.select :position_id, positions_list, { include_blank: true } , { class: "form-select" } %>
+                </div>
+              <% end %> 
             </div>
             <div class="row mb-3">
               <%= form.label :department, class: "col-sm-2 col-form-label" %>
