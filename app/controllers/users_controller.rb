@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.build_user_position if @user.user_position.blank?
-    @user.build_user_department if @user.user_department.blank?
+    # @user.build_user_position if @user.user_position.blank?
+    # @user.build_user_department if @user.user_department.blank?
   end
 
   def update

@@ -10,94 +10,16 @@
       <div class="card">
         <div class="card-body p-4">
           <div class="row g-0 mb-2" data-controller="image-preview">
-            <h6 class="text-primary fw-semibold" >Avatar</h6>
-            <hr class="mt-0 mb-2 border-primary">
-            <div class="col-md-4 text-center" data-image-preview-target="avatar">
-              <% if @user.avatar.attached? %>
-                <%= image_tag @user.avatar.variant(resize_to_limit: [128, 128]).processed,  class: "rounded-circle" %>
-              <% else %> 
-                <i class="bi bi-card-image" style="font-size: 8rem; color: cornflowerblue;"></i>
-              <% end %>
-            </div>
-            <div class="col-md-4 text-center" data-image-preview-target="preview" hidden>
-              <img data-image-preview-target="canvas"  class="rounded-circle" width="128" height="128" >
-            </div>
-            <div class="col-md-8 ml-2">
-              <%= form.label :avatar, "Add avatar", class: "btn btn-outline-primary" %>
-              <%= form.file_field :avatar, accept: "image/*", "data-image-preview-target": "source", hidden: "", class: "form-control", "data-action": "image-preview#show" %>
-            </div>
+            <%= render partial: "users/partials/avatar", locals: { form: form } %>
           </div>
           <div class="row g-0 mb-2">
-            <h6 class="text-primary fw-semibold" >Full name</h6>
-            <hr class="mt-0 mb-2 border-primary">
-            <div class="row mb-3">
-              <%= form.label :firstname, class: "col-sm-2 col-form-label" %>
-              <div class="col-sm-10">
-                <%= form.text_field :firstname, class: "form-control" %>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <%= form.label :lastname, class: "col-sm-2 col-form-label" %>
-              <div class="col-sm-10">
-                <%= form.text_field :lastname, class: "form-control" %>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <%= form.label :middlename, class: "col-sm-2 col-form-label" %>
-              <div class="col-sm-10">
-                <%= form.text_field :middlename, class: "form-control" %>
-              </div>
-            </div>
+            <%= render partial: "users/partials/full_name", locals: { form: form } %>
           </div>
           <div class="row g-0 mb-2">
-            <h6 class="text-primary fw-semibold" >Сontacts</h6>
-            <hr class="mt-0 mb-2 border-primary">
-            <div class="row mb-3">
-              <%= form.label :email, class: "col-sm-2 col-form-label" %>
-              <div class="col-sm-10">
-                <%= form.text_field :email, class: "form-control" %>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <%= form.label :number, class: "col-sm-2 col-form-label" %>
-              <div class="col-sm-10">
-                <% unless  @user.phones.blank? %>
-                  <%= form.fields_for :phones do |phone_numbers| %>
-                    <%= phone_numbers.text_field :number, class: "form-control mb-1" %>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
+            <%= render partial: "users/partials/contacts", locals: { form: form } %>
           </div>
           <div class="row g-0 mb-2">
-            <h6 class="text-primary fw-semibold" >Company</h6>
-            <hr class="mt-0 mb-2 border-primary">
-            <div class="row mb-3">
-              <%= form.fields_for :user_position do |position_form| %>
-                <%= position_form.label :position_id, class: "col-sm-2 col-form-label" %>
-                <div class="col-sm-8">
-                  <%= position_form.select :position_id, positions_list, { include_blank: true }, { class: "form-select" } %>
-                </div>
-               <div class="col-sm-2">
-                  <%= position_form.check_box :_destroy, class: "btn-check", autocomplete: "off" %>
-                  <%= position_form.label :_destroy, "Delete", class: "btn btn-outline-danger" %>
-                </div>
-              <% end %> 
-            </div>
-<%# user department %>
-            <div class="row mb-3">
-              <%= form.fields_for :user_department do |department_form| %>
-                <%= department_form.label :department_id, class: "col-sm-2 col-form-label" %>
-                <div class="col-sm-8">
-                  <%= department_form.select :department_id, departments_list,{ include_blank: true }, { class: "form-select" } %>
-                </div>
-               <div class="col-sm-2">
-                  <%= department_form.check_box :_destroy, class: "btn-check", autocomplete: "off" %>
-                  <%= department_form.label :_destroy, "Delete", class: "btn btn-outline-danger" %>
-                </div>
-              <% end %> 
-            </div>
-<%# user department %>
+            <%= render partial: "users/partials/company", locals: { form: form } %>
           </div>
         </div>
         <div class="card-footer">

@@ -1,0 +1,3 @@
+<%= form.fields_for :user_department, @user.build_user_department do |department_form| %>
+  <%= render partial: "users/partials/company/department/form", locals: { department_form: department_form } %>
+<% end %> 

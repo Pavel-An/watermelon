@@ -1,0 +1,16 @@
+<h6 class="text-primary fw-semibold" >Avatar</h6>
+<hr class="mt-0 mb-2 border-primary">
+<div class="col-md-4 text-center" data-image-preview-target="avatar">
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar.variant(resize_to_limit: [128, 128]).processed,  class: "rounded-circle" %>
+  <% else %> 
+    <i class="bi bi-card-image" style="font-size: 8rem; color: cornflowerblue;"></i>
+  <% end %>
+</div>
+<div class="col-md-4 text-center" data-image-preview-target="preview" hidden>
+  <img data-image-preview-target="canvas"  class="rounded-circle" width="128" height="128" >
+</div>
+<div class="col-md-8 ml-2">
+  <%= form.label :avatar, "Add avatar", class: "btn btn-outline-primary" %>
+  <%= form.file_field :avatar, accept: "image/*", "data-image-preview-target": "source", hidden: "", class: "form-control", "data-action": "image-preview#show" %>
+</div>

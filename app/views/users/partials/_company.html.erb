@@ -1,0 +1,16 @@
+<h6 class="text-primary fw-semibold" >Company</h6>
+<hr class="mt-0 mb-2 border-primary">
+<div class="row mb-3">
+  <% if @user.user_position.blank? %>
+    <%= render partial: "users/partials/company/position/new", locals: { form: form } %>
+  <% else %>
+    <%= render partial: "users/partials/company/position/edit", locals: { form: form } %>
+  <% end %>
+</div>
+<div class="row mb-3">
+  <% if @user.user_department.blank? %>
+    <%= render partial: "users/partials/company/department/new", locals: { form: form } %>
+  <% else %>
+    <%= render partial: "users/partials/company/department/edit", locals: { form: form } %>
+  <% end %>
+</div>
