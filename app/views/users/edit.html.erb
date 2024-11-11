@@ -76,7 +76,7 @@
               <%= form.fields_for :user_position do |position_form| %>
                 <%= position_form.label :position_id, class: "col-sm-2 col-form-label" %>
                 <div class="col-sm-8">
-                  <%= position_form.select :position_id, positions_list, { }, { class: "form-select" } %>
+                  <%= position_form.select :position_id, positions_list, { include_blank: true }, { class: "form-select" } %>
                 </div>
                <div class="col-sm-2">
                   <%= position_form.check_box :_destroy, class: "btn-check", autocomplete: "off" %>
@@ -84,12 +84,20 @@
                 </div>
               <% end %> 
             </div>
+<%# user department %>
             <div class="row mb-3">
-              <%= form.label :department, class: "col-sm-2 col-form-label" %>
-              <div class="col-sm-10">
-                <%= form.select :department, departments_list, { include_blank: true }, { class: "form-select" } %>
-              </div>
-            </div> 
+              <%= form.fields_for :user_department do |department_form| %>
+                <%= department_form.label :department_id, class: "col-sm-2 col-form-label" %>
+                <div class="col-sm-8">
+                  <%= department_form.select :department_id, departments_list,{ include_blank: true }, { class: "form-select" } %>
+                </div>
+               <div class="col-sm-2">
+                  <%= department_form.check_box :_destroy, class: "btn-check", autocomplete: "off" %>
+                  <%= department_form.label :_destroy, "Delete", class: "btn btn-outline-danger" %>
+                </div>
+              <% end %> 
+            </div>
+<%# user department %>
           </div>
         </div>
         <div class="card-footer">
