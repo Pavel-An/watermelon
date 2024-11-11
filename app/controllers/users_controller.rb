@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user.build_user_position if @user.user_position.blank?
   end
 
   def update
@@ -22,6 +23,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email_address, :password, :firstname, :lastname, :middlename, :user_position_attributes, :avatar)
+    params.require(:user).permit(:email, :password, :firstname, :lastname, :middlename, :avatar, user_position_attributes:[:position_id, :id, :_destroy])
   end
 end

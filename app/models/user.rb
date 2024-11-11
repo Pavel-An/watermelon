@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :projects, through: :members
   has_one_attached :avatar
   accepts_nested_attributes_for :phones
-  accepts_nested_attributes_for :user_position
+  accepts_nested_attributes_for :user_position, allow_destroy: true
  
 
   validates :email, presence: true, uniqueness: true

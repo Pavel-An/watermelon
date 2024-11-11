@@ -11,8 +11,6 @@ export default class extends Controller {
     this.avatarTarget.setAttribute("hidden", "");
 
     reader.onload = function() {
-      // this.canvasTarget.removeAttribute("hidden");
-
       this.canvasTarget.src = reader.result;
     }.bind(this)
 
