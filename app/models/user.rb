@@ -17,11 +17,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :phones
   accepts_nested_attributes_for :user_position, allow_destroy: true
   accepts_nested_attributes_for :user_department, allow_destroy: true
- 
-
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true
-
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|

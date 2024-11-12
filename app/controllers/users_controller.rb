@@ -25,14 +25,14 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-                                 :email, 
-                                 :password, 
-                                 :firstname, 
-                                 :lastname, 
-                                 :middlename, 
-                                 :avatar, 
-                                 user_position_attributes:[:position_id, :id, :_destroy], 
-                                 user_department_attributes:[:department_id, :id, :_destroy]
+                                 :email,
+                                 :password,
+                                 :firstname,
+                                 :lastname,
+                                 :middlename,
+                                 :avatar,
+                                 user_position_attributes: [ :position_id, :id, :_destroy ],
+                                 user_department_attributes: [ :department_id, :id, :_destroy ]
                                 )
   end
 end
