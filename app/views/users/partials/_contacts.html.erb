@@ -7,12 +7,21 @@
   </div>
 </div>
 <div class="row mb-3">
-  <%= form.label :number, class: "col-sm-2 col-form-label" %>
+  <%= form.label :numbers, class: "col-sm-2 col-form-label" %>
   <div class="col-sm-10">
-    <% unless  @user.phones.blank? %>
-      <%= form.fields_for :phones do |phone_numbers| %>
-        <%= phone_numbers.text_field :number, class: "form-control mb-1" %>
-      <% end %>
+    <%= form.fields_for :phones  do |phone_numbers| %>
+      <div class="row">
+        <div class="col-sm-10">
+          <%= phone_numbers.text_field :number, class: "form-control mb-1" %>
+        </div>
+        <div class="col-sm-2">
+          <%= phone_numbers.check_box :_destroy, class: "btn-check", autocomplete: "off" %>
+          <%= phone_numbers.label :_destroy, "Delete", class: "btn btn-outline-danger" %>
+        </div>
+      </div>
+    <% end %>
+    <%= form.fields_for :phones, @user.phones.build  do |phone_numbers| %>
+      <%= phone_numbers.text_field :number, class: "form-control mb-1", placeholder: "New", "aria-label": "New" %>
     <% end %>
   </div>
 </div>

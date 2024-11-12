@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # @user.build_user_position if @user.user_position.blank?
-    # @user.build_user_department if @user.user_department.blank?
   end
 
   def update
@@ -31,6 +29,7 @@ class UsersController < ApplicationController
                                  :lastname,
                                  :middlename,
                                  :avatar,
+                                 phones_attributes: [:number, :id, :_destroy ],
                                  user_position_attributes: [ :position_id, :id, :_destroy ],
                                  user_department_attributes: [ :department_id, :id, :_destroy ]
                                 )
