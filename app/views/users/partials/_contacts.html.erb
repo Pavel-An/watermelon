@@ -9,41 +9,20 @@
 <div class="row mb-3">
   <%= form.label :numbers, class: "col-sm-2 col-form-label" %>
   <div class="col-sm-10" >
-    <%= form.fields_for :phones  do |phone_numbers| %>
-      <div class="row">
-        <div class="col-sm-10">
-          <%= phone_numbers.text_field :number, class: "form-control mb-1" %>
-        </div>
-        <div class="col-sm-2">
-          <%= phone_numbers.check_box :_destroy, class: "btn-check", autocomplete: "off" %>
-          <%= phone_numbers.label :_destroy, "Delete", class: "btn btn-outline-danger" %>
-        </div>
-      </div>
-    <% end %>
     <div class="row">
-        <%= button_tag  data: {action: "nested-fields#append"},  type: "button",  class: "btn  btn-outline-primary" do %>
-         <i class="bi bi-plus-circle-fill"> Add</i>
-        <% end %>
+      <%= render partial: "users/partials/contacts/phones/edit", locals: { form: form } %>
+    </div>
+    <div class="row" data-nested-fields-target="fields">
+    </div>
+    <div class="row">
       <div class="col-10">
-        <%= form.fields_for :phones, @user.phones.build do |phone_numbers| %>    
-          <%= phone_numbers.text_field :number, class: "form-control mb-1", placeholder: "New", "aria-label": "New" %>
+        <%= button_tag  data: {action: "nested-fields#append"},  type: "button",  class: "btn  btn-outline-primary mb-1" do %>
+          <i class="bi bi-plus-circle-fill"> Add new number</i>
         <% end %>
       </div>
-      <div class="col-sm-2">
-
-      </div>
     </div>
-    <div data-nested-fields-target="fields"></div>
-    <div>
-      <template data-nested-fields-target="template">
-        <div class="row">
-          <div class="col-10">
-            <%= form.fields_for :phones, @user.phones.build, child_index: "__INDEX__"  do |phone_numbers| %>
-              <%= phone_numbers.text_field :number, class: "form-control mb-1", placeholder: "New", "aria-label": "New" %>
-            <% end %>
-          </div>
-        </div>
-      </template>
-    </div>
+    <template data-nested-fields-target="template">   
+      <%= render partial: "users/partials/contacts/phones/new", locals: { form: form } %>
+    </template>
   </div>
 </div>

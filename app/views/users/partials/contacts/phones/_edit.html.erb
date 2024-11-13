@@ -1,0 +1,7 @@
+<%= form.fields_for :phones  do |phone_numbers| %>
+  <%= render partial: "users/partials/contacts/phones/form", locals: { phone_numbers: phone_numbers } %>
+  <div class="col-sm-2">
+    <%= phone_numbers.check_box :_destroy, class: "btn-check", autocomplete: "off" %>
+    <%= phone_numbers.label :_destroy, "Delete", class: "btn btn-outline-danger" %>
+  </div>
+<% end %>
