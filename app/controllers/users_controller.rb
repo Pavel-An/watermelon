@@ -29,7 +29,7 @@ class UsersController < ApplicationController
                                  :lastname,
                                  :middlename,
                                  :avatar,
-                                 phones_attributes: [:number, :id, :_destroy ],
+                                 phones_attributes: [ :number, :id, :_destroy ],
                                  user_position_attributes: [ :position_id, :id, :_destroy ],
                                  user_department_attributes: [ :department_id, :id, :_destroy ]
                                 )
