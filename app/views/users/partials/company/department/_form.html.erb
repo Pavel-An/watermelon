@@ -1,0 +1,4 @@
+<%= department_form.label :department_id, class: "col-sm-2 col-form-label" %>
+<div class="col-sm-10">
+  <%= department_form.select :department_id, departments_list, { include_blank: true }, { class: "form-select" } %>
+</div>

@@ -1,0 +1,82 @@
+<div class="row d-flex justify-content-center">
+  <div class="col col-lg-7 mb-4 mb-lg-0">
+    <div class="card border-radius border-primary">
+        <div class="row g-0">
+          <div class="col-4 text-center border-top-left-radius border-bottom-left-radius">
+            <div class="text-center">
+              <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar.variant(resize_to_limit: [128, 128]).processed, class: "rounded-circle mt-5 mb-2" %>
+              <% else %> 
+                <i class="bi bi-card-image" style="font-size: 8rem; color: cornflowerblue;"></i>
+              <% end %>
+            </div>
+          <% if @user.firstname? || @user.lastname? || @user.middlename? %>
+              <h5><%= @user.firstname %> <%= @user.lastname %></h5>
+              <h5><%= @user.middlename %></h5>
+            <% else %>
+             <h5>No name</h5>
+            <% end %>
+            <%= link_to edit_user_path(@user), class: "btn btn-lg btn-outline-primary my-2", role: "button"  do %>
+                <i class="bi bi-pencil-square"></i>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body p-4">
+              <h6 class="text-primary fw-semibold" >Сontacts</h6>
+              <hr class="mt-0 mb-2 border-primary">
+              <div class="row pt-1">
+                <div class="col-4">
+                  <h6>Email</h6>
+                </div>
+                <div class="col-8">
+                  <p class="text-muted"><%= @user.email %></p>
+                </div>
+              </div>
+              <div class="row pt-1 mb-4">
+                <div class="col-4">
+                  <h6>Phone</h6>
+                </div>
+                <div class="col-8">
+                  <% unless  @user.phones.blank? %>
+                    <% @user.phones.each do |phone| %>
+                      <p class="text-muted m-0"><%= phone. number%></p>
+                    <% end %>
+                  <% else %>
+                    <p class="text-muted">no data</p>
+                  <% end %> 
+                </div>
+              </div>
+              <h6 class="text-primary fw-semibold">Information</h6>
+              <hr class="mt-0 mb-2 border-primary">
+              <div class="row pt-1">
+                <div class="col-4">
+                  <h6>Post</h6>
+                </div>
+                <div class="col-8">
+                  <% unless @user.position.blank? %>
+                    <p class="text-muted"><%= @user.position.name %></p>
+                  <% else %>
+                    <p class="text-muted">no data</p>
+                  <% end %>                
+                </div>
+              </div>
+              <div class="row pt-1">
+                <div class="col-4">
+                  <h6>Department</h6>
+                </div>
+                <div class="col-8">
+                  <% unless @user.department.blank? %>
+                    <p class="text-muted"><%= @user.department.name %></p>
+                  <% else %>
+                    <p class="text-muted">no data</p>
+                  <% end %>  
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

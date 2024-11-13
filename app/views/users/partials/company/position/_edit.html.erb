@@ -1,0 +1,3 @@
+<%= form.fields_for :user_position do |position_form| %>
+  <%= render partial: "users/partials/company/position/form", locals: { position_form: position_form } %>
+<% end %> 

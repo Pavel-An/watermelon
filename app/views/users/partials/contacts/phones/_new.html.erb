@@ -1,0 +1,6 @@
+<%= form.fields_for :phones, @user.phones.build, child_index: "__INDEX__"  do |phone_numbers| %>
+  <%= render partial: "users/partials/contacts/phones/form", locals: { phone_numbers: phone_numbers } %>
+  <div class="col-sm-2 align-self-center fw-medium text-primary">
+    New
+  </div>
+<% end %>

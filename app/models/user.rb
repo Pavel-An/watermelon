@@ -6,12 +6,19 @@ class User < ApplicationRecord
 
   enum role: { user: 0, admin: 1 }
 
+  has_one :user_position
+  has_one :position, through: :user_position
+  has_one :user_department
+  has_one :department, through: :user_department
+  has_many :phones
   has_many :members
   has_many :projects, through: :members
-
+  has_one_attached :avatar
+  accepts_nested_attributes_for :phones, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :user_position, allow_destroy: true
+  accepts_nested_attributes_for :user_department, allow_destroy: true
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true
-
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
