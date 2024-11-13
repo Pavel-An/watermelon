@@ -17,13 +17,15 @@
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
     "@hotwired/turbo-rails": "^8.0.12",
     "@popperjs/core": "^2.11.8",
+    "@rails/actiontext": "^8.0.0",
     "autoprefixer": "^10.4.20",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "nodemon": "^3.1.7",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
-    "sass": "^1.80.3"
+    "sass": "^1.80.3",
+    "trix": "^2.1.8"
   },
   "browserslist": [
     "defaults"
