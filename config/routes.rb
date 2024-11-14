@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get "members/index"
-  get "members/new"
-  get "members/edit"
   devise_for :users,
               controllers: {
                 omniauth_callbacks: "users/omniauth_callbacks",

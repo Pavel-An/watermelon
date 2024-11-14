@@ -52,7 +52,4 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name, :description)
   end
 
-  def find_project
-    @project = Project.find(params[:id])
-  end
 end
