@@ -9,6 +9,6 @@ class Member < ApplicationRecord
 
 
   def name
-    %Q[#{user.lastname} #{user.firstname} #{user.lastname}]
+    user.full_name
   end
 end

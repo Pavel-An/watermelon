@@ -31,4 +31,8 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+  def full_name
+    "#{lastname} #{firstname} #{middlename}"
+  end
 end
