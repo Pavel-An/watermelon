@@ -6,8 +6,14 @@ class Blocks::NewController < ApplicationController
   end
 
   def h2
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   def text
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 end

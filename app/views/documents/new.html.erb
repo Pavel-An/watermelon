@@ -1,14 +1,14 @@
- 
-<%= link_to 'add H1', blocks_new_h1_path,  data: { turbo: true}, class: 'btn btn-primary'  %>
- 
-<%= link_to 'add H2', blocks_new_h2_path,  data: { turbo: true, turbo_frame: dom_id(Block.new) }, class: 'btn btn-primary'  %>
+<div class="row justify-content-center mb-1">
+  <div class="row">
+    <div class="col">
+      <%= link_to 'add H1', blocks_new_h1_path,  data: { turbo_stream: true}, format: "turbo_stream", frame: "block_new", class: 'btn btn-primary'  %>
+      <%= link_to 'add H2', blocks_new_h2_path,  data: { turbo_stream: true}, format: "turbo_stream", frame: "block_new", class: 'btn btn-primary'  %>
+      <%= link_to 'add Text', blocks_new_text_path, data: { turbo_stream: true}, format: "turbo_stream", frame: "block_new", class: 'btn btn-primary'  %>
+    </div>
+  </div>
 
-<%= link_to 'add Text', blocks_new_text_path,  data: { turbo: true, turbo_frame: dom_id(Block.new) }, class: 'btn btn-primary'  %>
-
-<%= turbo_frame_tag Block.new  do %>
-
-<%end %>
-
-
-<div id="block_new">
+  <div class="row" style="width: 210mm; height: 297mm;">
+    <div id="block_new" class="col">
+    </div>
+  </div>
 </div>
