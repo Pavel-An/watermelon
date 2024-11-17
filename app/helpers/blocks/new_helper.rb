@@ -1,0 +1,2 @@
+module Blocks::NewHelper
+end

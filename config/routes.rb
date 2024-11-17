@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :blocks do
+    get "new/h1"
+    get "new/h2"
+    get "new/text"
+  end
+  get "documents/new"
   devise_for :users,
               controllers: {
                 omniauth_callbacks: "users/omniauth_callbacks",
