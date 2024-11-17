@@ -1,8 +1,14 @@
  
-<%= link_to 'add H1', blocks_new_h1_path,  data: { turbo: true, turbo_frame: dom_id(Block.new), format: 'turbo_stream' }, class: 'btn btn-primary'  %>
+<%= link_to 'add H1', blocks_new_h1_path,  data: { turbo: true}, class: 'btn btn-primary'  %>
  
 <%= link_to 'add H2', blocks_new_h2_path,  data: { turbo: true, turbo_frame: dom_id(Block.new) }, class: 'btn btn-primary'  %>
 
 <%= link_to 'add Text', blocks_new_text_path,  data: { turbo: true, turbo_frame: dom_id(Block.new) }, class: 'btn btn-primary'  %>
 
-<%= turbo_frame_tag Block.new %>
+<%= turbo_frame_tag Block.new  do %>
+
+<%end %>
+
+
+<div id="block_new">
+</div>
