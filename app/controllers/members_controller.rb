@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_project_by_project_id, only: [ :index, :new, :create,:destroy ] 
-  before_action :find_member, only: [:destroy ]
+  before_action :find_project_by_project_id, only: [ :index, :new, :create, :destroy ]
+  before_action :find_member, only: [ :destroy ]
 
   def index
     @members = @project.members
@@ -26,7 +26,6 @@ class MembersController < ApplicationController
   end
 
   def edit
-    
   end
 
   def update
@@ -41,13 +40,12 @@ class MembersController < ApplicationController
   private
 
   def members_params
-    params.require(:members).permit(user_id:[]) 
+    params.require(:members).permit(user_id: [])
   end
 
   def find_member
     @member = Member.find(params[:id])
-  end 
-
+  end
 
   def find_project_by_project_id
     @project = Project.find(params[:project_id])
