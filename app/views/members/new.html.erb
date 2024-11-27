@@ -1,0 +1,40 @@
+<%= turbo_frame_tag "modal" do %>
+<div class="modal fade" tabindex="-1" data-controller="modal" data-bs-backdrop="static" data-bs-keyboard="false" >
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <%= form_with url: project_members_path, method: :post, scope: "members", data: { turbo: false } do |form| %>
+        <div class="modal-header">
+          <h3 class="modal-title fs-5 text-primary">New member</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">  
+          <div class="row mb-2">
+            <div class="col">  
+              <h6 class="text-primary fw-semibold" >Users</h6>
+              <hr class="mt-0 mb-2 border-primary">  
+              <% @members.each do |user| %>
+                <div class="form-check">
+                  <%= form.check_box :user_id,  { multiple: true, class: "form-check-input" }, user.id, nil %>
+                  <%= form.label "user_id_#{user.id}".to_sym, user.full_name, class: "form-check-label" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="row"> 
+            <div class="col">
+              <h6 class="text-primary fw-semibold" >Permissions</h6>
+              <hr class="mt-0 mb-2 border-primary">  
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <%= form.submit "Add", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+

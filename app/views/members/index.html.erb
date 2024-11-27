@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to "Projects", projects_path %></li>
+      <li class="breadcrumb-item"><%= link_to @project.name, @project %></li>
+      <li class="breadcrumb-item active" aria-current="page">Members</li>
+    </ol>
+  </nav>
+  <div class="conteiner ">
+    <%= link_to 'New member', new_project_member_path(@project),  data: { turbo: true, turbo_frame: 'modal' }, class: 'btn btn-primary'  %>
+  </div>
+  <div class="conteiner m-3">
+    <% @members.each do |member| %>
+      <div class="row text-primary my-2 mx-0 p-2 border border-primary border-2 rounded-2 position-relative">
+        <div class="col">
+          <h5 class="mt-0"><%= member.name%></h5>
+        </div>
+        <% if @members.count > 1%>
+          <div class="col-2">
+            <%= link_to "Delete", project_member_path(@project, member), class: "btn btn-outline-danger", type: "button", data: { "turbo-method": :delete } %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

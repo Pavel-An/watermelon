@@ -28,7 +28,7 @@
             <%= render "layouts/project_menu" %>
           <% end %>
           <div class="col">
-
+            <%= turbo_frame_tag "modal" %>
             <%= yield %>
             
           </div>
