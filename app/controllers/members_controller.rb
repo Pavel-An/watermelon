@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_project_by_id, only: [:index, :new, :create,:destroy]
-  before_action :find_member, only: [:destroy]
+  before_action :find_project_by_project_id, only: [ :index, :new, :create,:destroy ] 
+  before_action :find_member, only: [:destroy ]
 
   def index
     @members = @project.members
@@ -13,7 +13,13 @@ class MembersController < ApplicationController
 
   def create
     members_params[:user_id].each do |id|
-      @members = @project.members.create(user_id: id)
+      @members = @project.members.new(user_id: id)
+
+      if @members.save
+        flash[:success] = "Member(s) added"
+      else
+        flash.now[:danger] = "Member(s) not added"
+      end
     end
 
     redirect_to action: "index"
@@ -28,6 +34,7 @@ class MembersController < ApplicationController
 
   def destroy
     @member.destroy if @project.members.count > 1
+    flash[:success] = "Member deleted"
     redirect_to action: "index"
   end
 
@@ -37,9 +44,12 @@ class MembersController < ApplicationController
     params.require(:members).permit(user_id:[]) 
   end
 
-  private
-
   def find_member
     @member = Member.find(params[:id])
   end 
+
+
+  def find_project_by_project_id
+    @project = Project.find(params[:project_id])
+  end
 end

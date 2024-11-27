@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_project, only: [ :show, :edit, :update, :destroy ]
+  before_action :find_project_dy_id, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @projects = current_user.projects
@@ -52,4 +52,7 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name, :description)
   end
 
+  def find_project_dy_id
+    @project = Project.find(params[:id])
+  end
 end

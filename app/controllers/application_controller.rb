@@ -6,15 +6,4 @@ class ApplicationController < ActionController::Base
   def turbo_frame_request_variant
     request.variant = :turbo_frame if turbo_frame_request?
   end
-  
-  
-  private 
-  
-  def find_project
-    @project = Project.find(params[:id])
-  end
-
-  def find_project_by_id
-    @project = Project.find(params[:project_id])
-  end
 end
