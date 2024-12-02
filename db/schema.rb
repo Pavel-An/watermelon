@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_13_190831) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_02_110802) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,28 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_190831) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "document_blocks", force: :cascade do |t|
+    t.bigint "document_id", null: false
+    t.string "type"
+    t.text "content"
+    t.bigint "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_document_blocks_on_document_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.bigint "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_documents_on_project_id"
+    t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -132,6 +154,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_190831) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "document_blocks", "documents"
+  add_foreign_key "documents", "projects"
+  add_foreign_key "documents", "users"
   add_foreign_key "members", "projects"
   add_foreign_key "members", "users"
   add_foreign_key "phones", "users"

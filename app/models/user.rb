@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :phones
   has_many :members
   has_many :projects, through: :members
+  has_many :documents
   has_one_attached :avatar
   accepts_nested_attributes_for :phones, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :user_position, allow_destroy: true

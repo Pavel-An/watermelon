@@ -26,4 +26,8 @@ Rails.application.routes.draw do
   resources :users, only: [ :show, :edit, :update ] do
     resources :phones, except: [ :index, :show ]
   end
+
+  resources :documents do
+    resources :document_blocks
+  end
 end
