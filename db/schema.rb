@@ -73,7 +73,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_02_110802) do
     t.text "description"
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
-    t.bigint "status"
+    t.bigint "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_documents_on_project_id"
