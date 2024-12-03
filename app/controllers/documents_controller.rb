@@ -23,6 +23,7 @@ class DocumentsController < ApplicationController
   end
 
   def edit
+    @document_blocks = @document.document_blocks
   end
 
   def update

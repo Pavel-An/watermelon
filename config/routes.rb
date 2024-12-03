@@ -27,7 +27,11 @@ Rails.application.routes.draw do
 
   resources :documents, except: [ :index, :new ]
 
+  resources :document_blocks
   resources :users, only: [ :show, :edit, :update ] do
     resources :phones, except: [ :index, :show ]
   end
+
+
+
 end

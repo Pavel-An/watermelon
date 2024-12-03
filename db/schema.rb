@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_02_110802) do
 
   create_table "document_blocks", force: :cascade do |t|
     t.bigint "document_id", null: false
-    t.string "type"
+    t.string "block_type"
     t.text "content"
     t.bigint "position"
     t.datetime "created_at", null: false
