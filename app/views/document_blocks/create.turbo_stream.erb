@@ -1,1 +1,2 @@
-<%= turbo_stream.append "document-blocks", partial: "document_blocks/edit", locals: { block: @block, document: @document } %>
+
+<%= turbo_stream.append "blocks", partial: "document_blocks/edit", locals: { block: @block, document: @document }, method: "morph" %>
