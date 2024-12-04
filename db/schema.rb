@@ -62,10 +62,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_02_110802) do
     t.bigint "document_id", null: false
     t.string "block_type"
     t.text "content"
-    t.bigint "position"
+    t.bigint "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["document_id"], name: "index_document_blocks_on_document_id"
+    t.index ["position"], name: "index_document_blocks_on_position"
   end
 
   create_table "documents", force: :cascade do |t|

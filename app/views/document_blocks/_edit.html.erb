@@ -1,16 +1,21 @@
 <%= turbo_frame_tag block do %>
-  <div class="row my-2 mx-0">
-    <%= fields_for :document_blocks, [document, block], index: block.id do |block_form| %>
-      <% if block.block_type == "h1" %>
-        <%= block_form.label :content, block.block_type, class: "form-label" %>
-        <%= block_form.text_field :content, class: "form-control" %>
-      <% elsif block.block_type == "h2" %>
-        <%= block_form.label :content, block.block_type, class: "form-label" %>
-        <%= block_form.text_field :content, class: "form-control" %>
-      <% elsif block.block_type == "text" %>
-        <%= block_form.label :content, block.block_type, class: "form-label" %>
-        <%= block_form.text_field :content, class: "form-control" %>
+  <li class="list-group-item">
+    <div class="card mb-3 ">
+      <%= fields_for "document[document_blocks_attributes][]", block, index: block.id do |block_form| %>
+        <%= block_form.hidden_field :id %>
+        <div class="card-header">
+          <%= block.block_type %>
+        </div>
+        <div class="card-body">
+          <% if block.block_type == "h1" %>
+            <%= block_form.text_field :content, class: "form-control" %>
+          <% elsif block.block_type == "h2" %>
+            <%= block_form.text_field :content, class: "form-control" %>
+          <% elsif block.block_type == "text" %>
+            <%= block_form.rich_text_area :reach_content, class: "form-control" %>
+          <% end %>
+        </div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  </li>
 <% end %>

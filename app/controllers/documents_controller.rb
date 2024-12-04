@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :find_project_by_project_id, only: [ :index, :new, :create ]
-  before_action :find_document_by_id, only: [ :edit ]
+  before_action :find_document_by_id, only: [ :edit, :update ]
   
   def index
     @documents = @project.documents
@@ -27,6 +27,8 @@ class DocumentsController < ApplicationController
   end
 
   def update
+    @document.update(document_params)
+    @document.save
   end
 
   def destroy
@@ -35,8 +37,8 @@ class DocumentsController < ApplicationController
   private 
 
   def document_params
-    params.require(:document).permit(:name, :description)
-  end
+    params.require(:document).permit(:name, :description, document_blocks_attributes: [:id, :content, :reach_content])
+  end                                    
 
   def find_project_by_project_id
     @project = Project.find(params[:project_id])

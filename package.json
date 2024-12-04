@@ -18,6 +18,8 @@
     "@hotwired/turbo-rails": "^8.0.12",
     "@popperjs/core": "^2.11.8",
     "@rails/actiontext": "^8.0.0",
+    "@rails/request.js": "^0.0.11",
+    "@stimulus-components/sortable": "^5.0.1",
     "autoprefixer": "^10.4.20",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
@@ -25,6 +27,7 @@
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
     "sass": "^1.80.3",
+    "sortablejs": "^1.15.6",
     "trix": "^2.1.8"
   },
   "browserslist": [

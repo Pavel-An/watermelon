@@ -3,7 +3,7 @@ class Document < ApplicationRecord
 
   belongs_to :user
   belongs_to :project
-  has_many :document_blocks
+  has_many :document_blocks, -> { order(position: :asc) }
   has_rich_text :description
   accepts_nested_attributes_for :document_blocks, allow_destroy: true
 end

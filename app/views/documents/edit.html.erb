@@ -5,15 +5,17 @@
   </div>
   <div class="conteiner m-3">
     <div class="row text-primary my-2 mx-0 p-2 ">
-      <div class="col-10 position-relative">
+      <div class="col-10 position-relative" >
         <%= form_with model: @document, data: { turbo: false }, scope: "document" do |document|%>
           <%= turbo_frame_tag "document-blocks" do %>
+          <ul class="list-group" data-controller="sortable" data-sortable-animation-value="150">
             <% @document_blocks.each do |block| %>
               <%= render partial: "document_blocks/edit", locals: {block:  block, document: @document } %>
             <% end %>
+          </ul>
           <% end %>
           <div class="row my-2 mx-0">
-            <%= document.submit "Update", class: "btn btn-primary" %>
+            <%= document.submit "Save", class: "btn btn-primary" %>
           </div>
         <% end %>
       </div>
