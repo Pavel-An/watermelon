@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :find_project_by_project_id, only: [ :index, :new, :create ]
-  before_action :find_document_by_id, only: [ :edit, :update ]
+  before_action :find_document_by_id, only: [ :edit, :update, :show ]
   
   def index
     @documents = @project.documents
@@ -22,13 +22,20 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
     @document_blocks = @document.document_blocks
   end
 
   def update
     @document.update(document_params)
-    @document.save
+    if @document.save
+      redirect_to @document 
+    else
+      render "edit"
+    end
   end
 
   def destroy

@@ -3,4 +3,6 @@ class DocumentBlock < ApplicationRecord
   
   has_rich_text :reach_content
   acts_as_list scope: :document
+
+  validates :position, uniqueness: { scope: :document }
 end

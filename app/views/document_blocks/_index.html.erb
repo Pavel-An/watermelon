@@ -1,15 +1,17 @@
-  <%= turbo_frame_tag "blocks" do %>
-    <%= button_to "Header 1", 
-                  document_blocks_path, 
-                  params: { block: { block_type: "h1", document_id: document_id } }, 
-                  class: "btn btn-outline-primary btn-sm mb-1", 
-                  data: { turbo_frame: "document-blocks" } %>
-    <%= button_to "Header 2", 
-                  document_blocks_path, 
-                  params: { block: { block_type: "h2", document_id: document_id } }, 
-                  class: "btn btn-outline-primary btn-sm mb-1" %>
-    <%= button_to "Text", 
-                  document_blocks_path, 
-                  params: { block: { block_type: "text", document_id: document_id } }, 
-                  class: "btn btn-outline-primary btn-sm mb-1" %>
-  <% end %>
+<%= button_to "Header 1", 
+              document_blocks_path, 
+              params: { block: { block_type: "h1", document_id: document_id } }, 
+              class: "btn btn-outline-primary btn-sm mb-1" %>
+<%= button_to "Header 2", 
+              document_blocks_path, 
+              params: { block: { block_type: "h2", document_id: document_id } }, 
+              class: "btn btn-outline-primary btn-sm mb-1" %>
+<%= button_to "Header 3", 
+              document_blocks_path, 
+              params: { block: { block_type: "h3", document_id: document_id } }, 
+              class: "btn btn-outline-primary btn-sm mb-1" %>
+<%= button_to "Text", 
+              document_blocks_path, 
+              params: { block: { block_type: "text", document_id: document_id } }, 
+              class: "btn btn-outline-primary btn-sm mb-1" %>
+

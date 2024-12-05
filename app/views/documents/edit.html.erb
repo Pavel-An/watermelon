@@ -7,24 +7,11 @@
     <div class="row text-primary my-2 mx-0 p-2 ">
       <div class="col-10 position-relative" >
         <%= form_with model: @document, data: { turbo: false }, scope: "document" do |document|%>
-            <%
-=begin%>
- <%= turbo_frame_tag "document-blocks" do %> 
-<%
-=end%>
-              <ul id="blocks" class="list-group" data-controller="sortable" data-sortable-handle-value=".handle">
-                <% @document_blocks.each do |block| %>
-                  
-                    <%= render partial: "document_blocks/edit", locals: {block:  block, document: @document } %>
-                  
-                <% end %>
-              </ul>
-            <%
-=begin%>
- <% end %> 
-<%
-=end%>
-
+          <ul id="blocks" class="list-group" data-controller="sortable" data-sortable-handle-value=".handle" >
+            <% @document_blocks.each do |block| %>
+              <%= render partial: "document_blocks/edit", locals: {block:  block, document: @document } %> 
+            <% end %>
+          </ul>
           <div class="row my-2 mx-0">
             <%= document.submit "Save", class: "btn btn-primary" %>
           </div>

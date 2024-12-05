@@ -1,0 +1,9 @@
+<% if block.block_type == "h1" %>
+  <h1><%= block.content %></h1>
+<% elsif block.block_type == "h2" %>
+  <h2><%= block.content %></h2>
+<% elsif block.block_type == "h3" %>
+  <h3><%= block.content %></h3>
+<% elsif block.block_type == "text" %>
+  <p><%= block.reach_content %></p>
+<% end %>
