@@ -21,6 +21,9 @@
           <div class="row g-0 mb-2">
             <%= render partial: "users/partials/company", locals: { form: form } %>
           </div>
+          <div class="row g-0 mb-2">
+            <%= render partial: "users/partials/locale", locals: { form: form } %>
+          </div>
         </div>
         <div class="card-footer">
            <%= form.button "Update", class: "btn btn-primary" %>

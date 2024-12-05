@@ -1,0 +1,6 @@
+<h6 class="text-primary fw-semibold" >Application</h6>
+<hr class="mt-0 mb-2 border-primary">
+<%= form.label :locale, "Language", class: "col-sm-2 col-form-label" %>
+<div class="col-sm-10">
+  <%= form.select :locale, locales_list, {}, { class: "form-select" } %>
+</div>
