@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
   before_action :find_project_by_project_id, only: [ :index, :new, :create ]
   before_action :find_document_by_id, only: [ :edit, :update, :show ]
-  
+
   def index
     @documents = @project.documents
   end
@@ -32,7 +32,7 @@ class DocumentsController < ApplicationController
   def update
     @document.update(document_params)
     if @document.save
-      redirect_to @document 
+      redirect_to @document
     else
       render "edit"
     end
@@ -41,11 +41,11 @@ class DocumentsController < ApplicationController
   def destroy
   end
 
-  private 
+  private
 
   def document_params
-    params.require(:document).permit(:name, :description, document_blocks_attributes: [:id, :content, :reach_content])
-  end                                    
+    params.require(:document).permit(:name, :description, document_blocks_attributes: [ :id, :content, :reach_content ])
+  end
 
   def find_project_by_project_id
     @project = Project.find(params[:project_id])

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   devise_for :users,
               controllers: {
                 omniauth_callbacks: "users/omniauth_callbacks",
@@ -31,7 +30,4 @@ Rails.application.routes.draw do
   resources :users, only: [ :show, :edit, :update ] do
     resources :phones, except: [ :index, :show ]
   end
-
-
-
 end

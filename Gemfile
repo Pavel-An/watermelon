@@ -57,4 +57,4 @@ gem "devise", "~> 4.9"
 
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
-gem 'acts_as_list', '~> 0.7.2'
+gem "acts_as_list", "~> 0.7.2"

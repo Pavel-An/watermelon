@@ -8,6 +8,6 @@ module UsersHelper
   end
 
   def locales_list
-    [["Русский", "ru"] ,["English", "en"]]
+    [ [ "Русский", "ru" ], [ "English", "en" ] ]
   end
 end

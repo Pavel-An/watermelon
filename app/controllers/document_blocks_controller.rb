@@ -1,13 +1,6 @@
 class DocumentBlocksController < ApplicationController
-  before_action :find_block_by_id, only: [ :update, :destroy]
+  before_action :find_block_by_id, only: [ :update, :destroy ]
   before_action :find_document_by_document_id, only: [ :create ]
-  
-  
-  def index
-  end
-
-  def new
-  end
 
   def create
     @block = DocumentBlock.new(block_params)
@@ -17,9 +10,6 @@ class DocumentBlocksController < ApplicationController
         format.turbo_stream
       end
     end
-  end
-
-  def edit
   end
 
   def update
