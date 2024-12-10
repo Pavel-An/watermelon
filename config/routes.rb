@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
 
-  authenticate :user, lambda { |u| u.admin? } do
-    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  end
 
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+ 
   devise_for :users,
               controllers: {
                 omniauth_callbacks: "users/omniauth_callbacks",

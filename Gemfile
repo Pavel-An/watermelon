@@ -62,3 +62,5 @@ gem "omniauth-rails_csrf_protection"
 gem "acts_as_list", "~> 0.7.2"
 
 gem 'rails_admin', '~> 3.3'
+
+gem 'cancan', '~> 1.6', '>= 1.6.10'

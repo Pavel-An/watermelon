@@ -10,7 +10,7 @@ RailsAdmin.config do |config|
   config.current_user_method(&:current_user)
 
   ## == CancanCan ==
-  # config.authorize_with :cancancan
+  config.authorize_with :cancancan
 
   ## == Pundit ==
   # config.authorize_with :pundit
@@ -38,5 +38,7 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+
+    config.parent_controller = "::ApplicationController"
   end
 end
