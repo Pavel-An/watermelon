@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   def turbo_frame_request_variant
     request.variant = :turbo_frame if turbo_frame_request?
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to main_app.root_path, alert: exception.message
+  end
 end
