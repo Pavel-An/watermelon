@@ -60,4 +60,3 @@ gem "omniauth-rails_csrf_protection"
 gem "acts_as_list", "~> 0.7.2"
 
 gem "pundit", "~> 2.4"
-gem 'activeadmin', '~> 3.2', '>= 3.2.5'
