@@ -8,11 +8,13 @@
         <li class="nav-item">
           <%= link_to t("documents"), projects_path, class: "nav-link active"%>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Admins</a>
-        </li>
+        <% if current_user.admin?%>
+          <li class="nav-item">
+            <%= link_to t("administration"), rails_admin_path, class: "nav-link active"%>
+          </li>
+        <% end %>
         <li class="nav-item dropdown">
-          <%= link_to "#{current_user.full_name}", "#", class: "nav-link active dropdown-toggle", role: "button", "data-bs-toggle": "dropdown", "aria-expanded": "false" %>
+          <%= link_to current_user.full_name.blank? ? "#{current_user.email}" : "#{current_user.full_name}", "#", class: "nav-link active dropdown-toggle", role: "button", "data-bs-toggle": "dropdown", "aria-expanded": "false" %>
           <ul class="dropdown-menu dropdown-menu-end p-2 rounded-3 mx-0 border-0 shadow" data-bs-theme="dark">
             <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item rounded-2" %></li>
             <li><hr class="dropdown-divider"></li>

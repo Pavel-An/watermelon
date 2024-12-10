@@ -1,0 +1,9 @@
+<% if project.open? %>
+  <span class="badge rounded-pill text-bg-success">Open</span>
+<% elsif project.paused? %>
+  <span class="badge rounded-pill text-bg-warning">Paused</span>
+<% elsif project.close? %>
+  <span class="badge rounded-pill text-bg-danger">Close</span>
+<% elsif project.archived? %>
+  <span class="badge rounded-pill text-bg-secondary">Archived</span>
+<% end %>

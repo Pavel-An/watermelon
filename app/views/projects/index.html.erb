@@ -1,18 +1,30 @@
 <div class="container-fluid">
-  <div class="conteiner ">
+  <div class="conteiner m-3">
     <%= link_to "New project", new_project_path, class: "btn btn-primary", role: "button" %>
   </div>
   <div class="conteiner m-3">
     <% @projects.each do |project| %>
-      <div class="row text-primary my-2 mx-0 p-2 border border-primary border-2 rounded-2 position-relative">
-        <div class="col">
-          <h5 class="mt-0"><%= project.name%></h5>
-          <% unless project.description.blank? %>
-            <p><%= project.description %></p>
-          <% end %>
-          <%= link_to "Go project", project_path(project), class: "stretched-link link-opacity-50" %>
+      <div class="row text-primary my-2 mx-0 p-2 border border-primary border-2 rounded-2 position-relative align-items-center">
+        <div class="hstack gap-2">
+          <div class="p-1">
+            <%= link_to project_path(project), class: "link-primary stretched-link link-underline-opacity-0" do %>
+              <h4 class="m-0"><%= project.name%></h4>
+            <% end %>
+          </div>
+          <div class="p-1 ms-auto">
+          Members <span class="badge text-bg-secondary"><%= project.members.count %></span>
+          </div>
+          <div class="p-1">
+            Documents <span class="badge text-bg-secondary"><%= project.documents.count %></span>
+          </div>
+          <div class="p-1">
+            <%= render partial: "status", locals: { project: project } %>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+
+

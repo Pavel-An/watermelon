@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  enum status: { active: 0, closed: 1, paused: 2, archived: 3 }
+  enum status: { open: 0, close: 1, paused: 2, archived: 3 }
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :status, presence: true
