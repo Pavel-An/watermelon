@@ -2,3 +2,8 @@ en:
   projects: "Projects"
   documents: "Documents"
   administration: "Administration"
+
+  unauthorized:
+    access: "You have no access to this resource"
+ 
+

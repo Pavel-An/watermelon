@@ -2,3 +2,7 @@ ru:
   projects: "Проекты"
   documents: "Документы"
   administration: "Администрирование"
+
+  unauthorized:
+    access:
+      rails_admin: "You have no access to this resource"

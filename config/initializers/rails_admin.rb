@@ -40,5 +40,6 @@ RailsAdmin.config do |config|
     # history_show
 
     config.parent_controller = "Admin::BaseController"
+    
   end
 end
