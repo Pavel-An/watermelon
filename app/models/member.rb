@@ -11,4 +11,8 @@ class Member < ApplicationRecord
   def name
     user.full_name
   end
+
+  def login
+    user.email
+  end
 end

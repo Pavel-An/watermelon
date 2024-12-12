@@ -1,12 +1,16 @@
 <div class="container-fluid">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><%= link_to "Projects", projects_path %></li>
-      <li class="breadcrumb-item"><%= link_to @project.name, @project %></li>
-      <li class="breadcrumb-item active" aria-current="page">Members</li>
-    </ol>
-  </nav>
-
+  <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Projects", projects_path %></li>
+        <li class="breadcrumb-item"><%= link_to @project.name, @project %></li>
+        <li class="breadcrumb-item active" aria-current="page">Members</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="conteiner p-1">
+    <%= link_to 'New member', new_project_member_path(@project),  data: { turbo: true, turbo_frame: 'modal' }, class: 'btn btn-primary'  %>
+  </div>
   <table class="table table-hover align-middle">
     <thead>
       <tr>
@@ -19,7 +23,10 @@
     <tbody class="table-group-divider">
       <% @members.each do |member| %>
         <tr>
-          <td><%= member.name %></td>
+          <td>
+            <div><%= member.name %></div>
+            <div><%= member.login %></div>
+          </td>
           <td>Direct member by</td>
           <td>Role</td>
           <td class="d-flex flex-row-reverse">
@@ -37,31 +44,6 @@
         <tr>
       <% end %>
     </tbody>
-
-
   </table>
-
-  <div class="conteiner list-group mb-3">
-    <div class="conteiner p-1">
-      <%= link_to 'New member', new_project_member_path(@project),  data: { turbo: true, turbo_frame: 'modal' }, class: 'btn btn-primary'  %>
-    </div>
-    <% @members.each do |member| %>
-      <div class="list-group-item list-group-item-action list-group-item-info m-1 rounded-2 border-1">
-        <div class="hstack gap-2">
-          <div class="p-1">
-            <h5 class="mt-0"><%= member.name%></h5>
-          </div>
-          <% if @members.count > 1%>
-            <div class="p-1  ms-auto">
-              <%= link_to "Permissions", "#", class: "btn btn-outline-primary", type: "button" %>
-            </div>
-            <div class="p-1">
-              <%= link_to "Delete", project_member_path(@project, member), class: "btn btn-outline-danger", type: "button", data: { "turbo-method": :delete } %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </div>
 </div>
 
