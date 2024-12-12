@@ -6,21 +6,62 @@
       <li class="breadcrumb-item active" aria-current="page">Members</li>
     </ol>
   </nav>
-  <div class="conteiner ">
-    <%= link_to 'New member', new_project_member_path(@project),  data: { turbo: true, turbo_frame: 'modal' }, class: 'btn btn-primary'  %>
-  </div>
-  <div class="conteiner m-3">
+
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">Source</th>
+        <th scope="col">Role</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <% @members.each do |member| %>
+        <tr>
+          <td><%= member.name %></td>
+          <td>Direct member by</td>
+          <td>Role</td>
+          <td class="d-flex flex-row-reverse">
+            <div class="dropdown dropstart p-2">
+              <button class="btn btn-outline-dark border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><button class="dropdown-item" type="button">remove member</button></li>
+                <li><button class="dropdown-item" type="button">permissions</button></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+      <% end %>
+    </tbody>
+
+
+  </table>
+
+  <div class="conteiner list-group mb-3">
+    <div class="conteiner p-1">
+      <%= link_to 'New member', new_project_member_path(@project),  data: { turbo: true, turbo_frame: 'modal' }, class: 'btn btn-primary'  %>
+    </div>
     <% @members.each do |member| %>
-      <div class="row text-primary my-2 mx-0 p-2 border border-primary border-2 rounded-2 position-relative">
-        <div class="col">
-          <h5 class="mt-0"><%= member.name%></h5>
-        </div>
-        <% if @members.count > 1%>
-          <div class="col-2">
-            <%= link_to "Delete", project_member_path(@project, member), class: "btn btn-outline-danger", type: "button", data: { "turbo-method": :delete } %>
+      <div class="list-group-item list-group-item-action list-group-item-info m-1 rounded-2 border-1">
+        <div class="hstack gap-2">
+          <div class="p-1">
+            <h5 class="mt-0"><%= member.name%></h5>
           </div>
-        <% end %>
+          <% if @members.count > 1%>
+            <div class="p-1  ms-auto">
+              <%= link_to "Permissions", "#", class: "btn btn-outline-primary", type: "button" %>
+            </div>
+            <div class="p-1">
+              <%= link_to "Delete", project_member_path(@project, member), class: "btn btn-outline-danger", type: "button", data: { "turbo-method": :delete } %>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
 </div>
+

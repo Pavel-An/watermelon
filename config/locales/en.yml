@@ -4,6 +4,9 @@ en:
   administration: "Administration"
 
   unauthorized:
-    access: "You have no access to this resource"
+    edit:
+      project: "Not allowed edit Project"
+    access: 
+      rails_admin: "Not allowed rails_admin."
  
 

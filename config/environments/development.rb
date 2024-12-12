@@ -65,8 +65,8 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
-  # config.i18n.default_locale = :en
+  config.i18n.raise_on_missing_translations = true
+  config.i18n.default_locale = :en
 
   # Annotate rendered view with file names.
   config.action_view.annotate_rendered_view_with_filenames = true
@@ -93,4 +93,5 @@ Rails.application.configure do
     read_timeout:    5 }
 
     config.web_console.automount = true
+ 
 end

@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_project_dy_id, only: [ :show, :edit, :update, :destroy ]
+  load_and_authorize_resource
 
   def index
     @projects = current_user.projects
@@ -23,7 +24,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def show
+  def show   
   end
 
   def edit

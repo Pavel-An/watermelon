@@ -4,5 +4,7 @@ ru:
   administration: "Администрирование"
 
   unauthorized:
-    access:
-      rails_admin: "You have no access to this resource"
+    edit:
+      project: "Нет доступа к редактированию проекта"
+    access: 
+      rails_admin: "Нет доступа"

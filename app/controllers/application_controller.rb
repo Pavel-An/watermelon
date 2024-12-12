@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, alert: exception.message
+    redirect_back fallback_location: root_path, alert: exception.message
   end
+
+
 end

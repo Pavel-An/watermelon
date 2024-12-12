@@ -63,4 +63,4 @@ gem "acts_as_list", "~> 0.7.2"
 
 gem 'rails_admin', '~> 3.3'
 
-gem 'cancan', '~> 1.6', '>= 1.6.10'
+gem 'cancancan', '~> 3.6', '>= 3.6.1'
