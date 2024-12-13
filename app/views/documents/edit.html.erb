@@ -7,6 +7,7 @@
     <div class="row text-primary my-2 mx-0 p-2 ">
       <div class="col-10 position-relative" >
         <%= form_with model: @document, data: { turbo: false }, scope: "document" do |document|%>
+          <%= document.hidden_field :name %>
           <ul id="blocks" class="list-group" data-controller="sortable" data-sortable-handle-value=".handle" >
             <% @document_blocks.each do |block| %>
               <%= render partial: "document_blocks/edit", locals: {block:  block, document: @document } %> 

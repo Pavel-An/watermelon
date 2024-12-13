@@ -1,30 +1,30 @@
 <%= turbo_frame_tag "modal" do %>
-<div class="modal fade" tabindex="-1" data-controller="modal" data-bs-backdrop="static" data-bs-keyboard="false" >
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <%= form_with url: project_documents_path(@project), method: :post, scope: "document", data: { turbo: false } do |form| %>
-        <div class="modal-header">
-          <h3 class="modal-title fs-5 text-primary">New document</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">  
-          <div class="row mb-2">
-            <div class="col"> 
-            <%= form.label :name, class: "form-label" %>
-            <%= form.text_field :name, class: "form-control" %> 
-            <%= form.label :description, class: "form-label" %>
-            <%= form.rich_text_area :description, class: "form-control" %>
+  <div class="modal fade" tabindex="-1" data-controller="modal" data-bs-backdrop="static" data-bs-keyboard="false" >
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <%= form_with url: project_documents_path(@project), method: :post, scope: "document", data: { turbo: false } do |form| %>
+          <div class="modal-header">
+            <h3 class="modal-title fs-5 text-primary">New document</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">  
+            <div class="row mb-2">
+              <div class="col"> 
+              <%= form.label :name, class: "form-label" %>
+              <%= form.text_field :name, class: "form-control" %> 
+              <%= form.label :description, class: "form-label" %>
+              <%= form.rich_text_area :description, class: "form-control" %>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <%= form.submit "Create", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <%= form.submit "Create", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 <% end %>
 
 
