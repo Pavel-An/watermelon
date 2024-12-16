@@ -1,9 +1,9 @@
 <% if block.block_type == "h1" %>
-  <h1><%= block.content %></h1>
+  <p class="fs-1 fw-bold mb-2"><%= block.content %></p>
 <% elsif block.block_type == "h2" %>
-  <h2><%= block.content %></h2>
+  <p class="fs-2 fw-bolder mb-2"><%= block.content %></p>
 <% elsif block.block_type == "h3" %>
-  <h3><%= block.content %></h3>
+  <p class="fs-3 fst-italic mb-2"><%= block.content %></p>
 <% elsif block.block_type == "text" %>
-  <p><%= block.reach_content %></p>
+  <p class="fs-4 fw-normal mb-2"><%= block.reach_content %></p>
 <% end %>

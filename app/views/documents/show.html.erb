@@ -1,13 +1,33 @@
 <div class="conteiner-fluid p-3">
-  <div class="row justify-content-start">
-    <%= link_to "Edit", edit_document_path(@document), class: "btn btn-outline-primary", type: "button"%>
-  </div>
   <div class="row">
-    <%= @document.name %>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Documents", "#" %></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= @document.name %></li>
+      </ol>
+    </nav>
   </div>
-  <div class="row">
-    <% @document.document_blocks.each do |block| %>
-      <%= render partial: "document_blocks/show", locals: {block:  block } %>
-    <% end %>
+  <div class="row border-bottom border-2 mb-2">
+    <div class="hstack">
+      <div class="p-1">
+        <%= render partial: "status", locals: { document: @document } %>
+      </div>
+      <div class="p-1">
+        <h1 class="m-0 text-primary text-uppercase fw-bold"><%=@document.name%></h1>
+      </div>
+      <div class="p-1 ms-auto">
+        <%= link_to "Edit", edit_document_path(@document), class: "btn btn-outline-primary btn-sm", type: "button"%>
+      </div> 
+      <div class="p-1">
+        <%= link_to "Setting", "#", class: "btn btn-outline-primary btn-sm", role: "button" %>
+      </div>          
+    </div>
+  </div>
+  <div class="row justify-content-center p-2">
+    <div class="col-10">
+      <% @document.document_blocks.each do |block| %>
+        <%= render partial: "document_blocks/show", locals: {block:  block } %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -10,7 +10,6 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    Rails.logger.debug "#{document_params}"
     @document = @project.documents.new(document_params)
     @document.user_id = current_user.id
 
@@ -44,7 +43,7 @@ class DocumentsController < ApplicationController
   private
 
   def document_params
-    params.require(:document).permit(:name, :description, document_blocks_attributes: [ :id, :content, :reach_content ])
+    params.require(:document).permit(:name, :description, :status, document_blocks_attributes: [ :id, :content, :reach_content ])
   end
 
   def find_project_by_project_id

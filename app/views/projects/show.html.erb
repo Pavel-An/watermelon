@@ -1,7 +1,25 @@
-
-<div class="container p-3">
-  <div class="row justify-content-start">
-    <h3><%= @project.name %></h3>
-    <p class="fs-4"><%= @project.description %></p>
+<div class="conteiner-fluid px-3">
+  <div class="row mb-2 border-bottom border-2">
+    <div class="d-flex gap-2">
+      <div class="align-content-center">
+        <%= render partial: "status", locals: { project: @project } %>
+      </div>
+      <div class="align-content-center">
+        <h1 class="m-0 text-primary text-uppercase fw-bold "><%= @project.name %></h1>
+      </div>
+      <div class="dropdown dropstart p-2 ms-auto align-content-center">
+        <button class="btn btn-outline-dark border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-three-dots-vertical"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <li><button class="dropdown-item text-success" type="button">Open</button></li>
+          <li><button class="dropdown-item text-warning" type="button">Paused</button></li>
+          <li><button class="dropdown-item text-danger" type="button">Close</button></li>
+        </ul>
+      </div>        
+    </div>
+  </div>
+  <div class="row mb-2">
+    <%= @project.description %>
   </div>
 </div>

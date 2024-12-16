@@ -12,17 +12,24 @@
   <div class="conteiner list-group m-2">
     <% @documents.each do |document| %>
       <div class="list-group-item list-group-item-action list-group-item-light m-1 rounded-2 border-1">
-        <div class="hstack">
-          <div class="p-1">
-            <h5 class="mt-0"><%= document.name%></h5>
+        <div class="d-flex">
+          <div class="p-1 me-auto flex-grow-1 position-relative align-content-center">
+            <%= link_to document_path(document), class: "link-primary stretched-link link-underline-opacity-0" do %>
+            <h5 class="mt-0 "><%= document.name%></h5>
+            <% end %>
           </div>
-          <div class="p-1 ms-auto">
-            <%= link_to "Show", document_path(document), class: "btn btn-outline-primary", type: "button"%>
+          <div class="p-1 align-content-center">
+            <%= render partial: "status", locals: { document: document } %>
           </div>
-          <div class="p-1">
-            <%= link_to "Settings", "#", class: "btn btn-outline-primary", type: "button"%>
+          <div class="dropdown dropstart p-1 align-content-center">
+            <button class="btn btn-outline-dark border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Settings", "#", class: "dropdown-item", type: "button"%></li>
+              <li><button class="dropdown-item text-danger" type="button">Delete</button></li>
+            </ul>
           </div>
- 
         </div>
       </div>
     <% end %>

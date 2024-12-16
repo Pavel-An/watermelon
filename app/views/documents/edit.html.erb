@@ -1,27 +1,61 @@
 <div class="container-fluid">
-  <div class="conteiner ">
-    <h2><%= @document.name %></h2>
-    <%= link_to "Setting", new_project_path, class: "btn btn-primary", role: "button" %>
+
+  <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Documents", "#" %></li>
+        <li class="breadcrumb-item"><%= link_to @document.name, "#" %></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+      </ol>
+    </nav>
   </div>
-  <div class="conteiner m-3">
-    <div class="row text-primary my-2 mx-0 p-2 ">
-      <div class="col-10 position-relative" >
-        <%= form_with model: @document, data: { turbo: false }, scope: "document" do |document|%>
-          <%= document.hidden_field :name %>
-          <ul id="blocks" class="list-group" data-controller="sortable" data-sortable-handle-value=".handle" >
-            <% @document_blocks.each do |block| %>
-              <%= render partial: "document_blocks/edit", locals: {block:  block, document: @document } %> 
-            <% end %>
-          </ul>
-          <div class="row my-2 mx-0">
-            <%= document.submit "Save", class: "btn btn-primary" %>
-          </div>
-        <% end %>
+  <div class="row border-bottom border-2 mb-3 sticky-top bg-white">
+    <div class="row mb-2">
+      <div class="hstack">
+        <div class="p-1">
+          <%= render partial: "status", locals: { document: @document } %>
+        </div>
+        <div class="p-1">
+          <h1 class="m-0 text-primary text-uppercase fw-bold"><%=@document.name%></h1>
+        </div>
+        <div class="p-1 ms-auto">
+          <%= link_to "Settings","#", class: "btn btn-primary btn-sm", type: "button"%>
+        </div>         
       </div>
-      <div class="col-2 border-start border-primary border-2">
-        <h3>Blocks</h3>
+    </div>
+    <div class="row">
+      <div class="hstack">
+        <div class="p-1">
+          <h3 class="m-0 text-primary">Blocks</h3>
+        </div>
         <%= render partial: "document_blocks/index", locals: {document_id:  @document.id}%>
       </div>
     </div>
   </div>
+  <%= form_with model: @document, data: { turbo: false }, scope: "document" do |document|%>
+    <div class="row justify-content-center" >
+      <div class="col-10 position-relative">
+        <%= document.hidden_field :name %>
+        <ul id="blocks" class="list-group" data-controller="sortable" data-sortable-handle-value=".handle" >
+          <% @document_blocks.each do |block| %>
+            <%= render partial: "document_blocks/edit", locals: {block:  block, document: @document } %> 
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="row my-1 py-2 mx-0 sticky-sm-bottom bg-white">
+      <div class="hstack">
+        <div class="p-1">
+          <%= document.button :status, class: "btn btn-primary", value: "created" do %>
+            Save
+          <% end %>
+        </div>
+        <div class="p-1">
+          <%= document.button :status, class: "btn btn-primary", value: "draft" do %>
+            Save as draft
+          <% end %>
+        </div>         
+      </div>
+    </div>
+  <% end %>
 </div>

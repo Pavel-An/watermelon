@@ -19,6 +19,10 @@
           <%= block_form.rich_text_area :reach_content, class: "form-control" %>
         <% end %>
       </div>
+      <div class="card-footer m-0">
+        <%= render partial: "document_blocks/dropdown_headers", locals: {document_id: document.id} %>
+      </div>
     <% end %>
   </div>
 </li>
+
