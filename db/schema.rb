@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_05_184220) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_17_124032) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_05_184220) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "role", default: 0, null: false
+    t.bigint "invited_id", null: false
+    t.datetime "last_activity"
     t.index ["project_id", "user_id"], name: "index_members_on_project_id_and_user_id", unique: true
     t.index ["project_id"], name: "index_members_on_project_id"
     t.index ["user_id"], name: "index_members_on_user_id"
@@ -161,6 +164,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_05_184220) do
   add_foreign_key "documents", "users"
   add_foreign_key "members", "projects"
   add_foreign_key "members", "users"
+  add_foreign_key "members", "users", column: "invited_id"
   add_foreign_key "phones", "users"
   add_foreign_key "user_departments", "departments"
   add_foreign_key "user_departments", "users"

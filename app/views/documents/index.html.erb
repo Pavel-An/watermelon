@@ -1,13 +1,15 @@
 <div class="container-fluid">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><%= link_to "Projects", projects_path %></li>
-      <li class="breadcrumb-item"><%= link_to @project.name, @project %></li>
-      <li class="breadcrumb-item active" aria-current="page">Documents</li>
-    </ol>
-  </nav>
+  <% if @project %>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Projects", projects_path %></li>
+        <li class="breadcrumb-item"><%= link_to @project.name, @project %></li>
+        <li class="breadcrumb-item active" aria-current="page">Documents</li>
+      </ol>
+    </nav>
+  <% end %>
   <div class="conteiner m-2">
-    <%= link_to 'New document', new_project_document_path(@project),  data: { turbo: true, turbo_frame: 'modal' }, class: 'btn btn-primary'  %>
+    <%= link_to 'New document', @project ? new_project_document_path(@project) : new_document_path,  data: { turbo: true, turbo_frame: 'modal' }, class: 'btn btn-primary'  %>
   </div>
   <div class="conteiner list-group m-2">
     <% @documents.each do |document| %>

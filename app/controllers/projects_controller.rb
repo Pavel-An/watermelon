@@ -4,7 +4,11 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @projects = current_user.projects
+    if current_user.admin?
+      @projects = Project.all
+    else
+      @projects = current_user.projects
+    end
   end
 
   def new
@@ -16,7 +20,7 @@ class ProjectsController < ApplicationController
 
     if @project.save
       flash[:success] = "Project created"
-      @project.members.create(user_id: current_user.id)
+      @project.members.create(user_id: current_user.id, role: "owner", invited_id: current_user.id )
       redirect_to @project
     else
       flash.now[:danger] = "Project don\'t created"
@@ -25,6 +29,11 @@ class ProjectsController < ApplicationController
   end
 
   def show   
+    if @project.member?(current_user)
+      member = @project.member(current_user)
+      member.update(last_activity: Time.now)
+      member.save
+    end
   end
 
   def edit
@@ -50,7 +59,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :status)
   end
 
   def find_project_dy_id

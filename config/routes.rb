@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-
-
-
-    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
     
   devise_for :users,
               controllers: {
@@ -29,7 +26,7 @@ Rails.application.routes.draw do
     resources :documents, only: [ :index, :new, :create ]
   end
 
-  resources :documents, except: [ :index, :new ]
+  resources :documents
 
   resources :document_blocks
   resources :users, only: [ :show, :edit, :update ] do

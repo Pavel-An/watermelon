@@ -1,4 +1,13 @@
 <div class="conteiner-fluid px-3">
+  <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Projects", projects_path %></li>
+        <li class="breadcrumb-item"><%= link_to @project.name, @project %></li>
+        <li class="breadcrumb-item active" aria-current="page">Overview</li>
+      </ol>
+    </nav>
+  </div>
   <div class="row mb-2 border-bottom border-2">
     <div class="d-flex gap-2">
       <div class="align-content-center">
@@ -12,9 +21,9 @@
           <i class="bi bi-three-dots-vertical"></i>
         </button>
         <ul class="dropdown-menu">
-          <li><button class="dropdown-item text-success" type="button">Open</button></li>
-          <li><button class="dropdown-item text-warning" type="button">Paused</button></li>
-          <li><button class="dropdown-item text-danger" type="button">Close</button></li>
+          <li><%= button_to "Open", project_path(@project), class: "dropdown-item text-success", params: { project: {status: "open"} }, method: :patch %></li>
+          <li><%= button_to "Paused", project_path(@project), class: "dropdown-item text-warning", params: { project: {status: "paused"} }, method: :patch %></li>
+          <li><%= button_to "Close", project_path(@project), class: "dropdown-item text-danger", params: { project: {status: "close"} }, method: :patch %></li>
         </ul>
       </div>        
     </div>

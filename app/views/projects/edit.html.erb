@@ -1,4 +1,13 @@
 <div class="container px-5">
+  <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Projects", projects_path %></li>
+        <li class="breadcrumb-item"><%= link_to @project.name, @project %></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+      </ol>
+    </nav>
+  </div>
   <%= form_with model: @project do |form| %>
     <%= render partial: "form", locals: { form: form } %>
     <%= form.submit "Update", class: "btn btn-primary" %>

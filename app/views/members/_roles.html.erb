@@ -1,0 +1,7 @@
+<ul class="dropdown-menu">
+  <% @members.roles.keys.each do |role| %>
+    <li>
+      <%= button_to role, project_member_path(@project, member), class: "dropdown-item text-dark", type: "button", method: :patch, params: { member: { role: role } } %>
+    </li>
+  <% end %>
+</ul>

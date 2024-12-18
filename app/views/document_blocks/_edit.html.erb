@@ -10,18 +10,18 @@
       </div>
       <div class="card-body">
         <% if block.block_type == "h1" %>
-          <%= block_form.text_field :content, class: "form-control" %>
+          <%= block_form.text_field :content, class: "form-control", autofocus: true %>
         <% elsif block.block_type == "h2" %>
-          <%= block_form.text_field :content, class: "form-control" %>
+          <%= block_form.text_field :content, class: "form-control", autofocus: true %>
         <% elsif block.block_type == "h3" %>
-          <%= block_form.text_field :content, class: "form-control" %>
+          <%= block_form.text_field :content, class: "form-control", autofocus: true %>
         <% elsif block.block_type == "text" %>
-          <%= block_form.rich_text_area :reach_content, class: "form-control" %>
+          <%= block_form.rich_text_area :reach_content, class: "form-control", autofocus: true %>
         <% end %>
       </div>
-      <div class="card-footer m-0">
-        <%= render partial: "document_blocks/dropdown_headers", locals: {document_id: document.id} %>
-      </div>
+
+        <%= render partial: "document_blocks/dropdown_headers", locals: {document_id: document.id, block_id: block.id } %>
+
     <% end %>
   </div>
 </li>

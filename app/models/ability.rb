@@ -16,8 +16,8 @@ class Ability
     if user.admin?
       can :access, :rails_admin 
       can :manage, :all     
-    else
-      can :read, Project
+    elsif user.manager?
+      can :create, Project
     end
 
   end

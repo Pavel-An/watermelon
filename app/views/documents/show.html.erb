@@ -24,7 +24,18 @@
     </div>
   </div>
   <div class="row justify-content-center p-2">
-    <div class="col-10">
+    <% unless @document.document_block_headers.blank? %>
+      <div class="col-3">
+        <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+          <nav class="nav nav-pills flex-column">
+            <% @document.document_blocks.where(block_type: ["h1", "h2", "h3"]).each do |header| %>
+              <a class="nav-link" href="#block-<%= header.id %>"><%= header.content %></a>
+            <% end %>
+          </nav>
+        </nav>
+      </div>
+    <% end %>
+    <div class="col-9 ">
       <% @document.document_blocks.each do |block| %>
         <%= render partial: "document_blocks/show", locals: {block:  block } %>
       <% end %>

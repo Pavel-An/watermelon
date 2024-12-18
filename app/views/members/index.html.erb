@@ -17,6 +17,7 @@
         <th scope="col">User</th>
         <th scope="col">Source</th>
         <th scope="col">Role</th>
+        <th scope="col">Activity</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -24,24 +25,66 @@
       <% @members.each do |member| %>
         <tr>
           <td>
-            <div><%= member.name %></div>
+            <div>
+              <%= member.name %> 
+              <% if member.current_user?(current_user) %>
+                <span class="badge text-bg-info">it's you</span>
+              <% end %>
+            </div>
             <div><%= member.login %></div>
           </td>
-          <td>Direct member by</td>
-          <td>Role</td>
+          <td>
+            <div>Direct member by</div> 
+            <div><%= member.invited.full_name %></div>
+          </td>
+          <td>
+            <% if member.current_user?(current_user) %>
+              <%= member.role %>
+            <% else %>
+              <div class="btn-group">
+                <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= member.role %>
+                </button>
+                  <%= render partial: "roles", locals: { member: member } %>
+              </div>
+            <% end %>
+          </td>
+          <td>
+            <div>
+              <i class="bi bi-person-plus" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Member added"></i> 
+              <%= member.created_at.strftime("%b %d, %Y") %>
+            <div>
+            <div>
+              <i class="bi bi-clock" data-controller="test" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Last activity in project"></i> 
+              <% unless member.last_activity.blank? %>
+                <%= member.last_activity.strftime("%b %d, %Y") %>
+              <% else %>
+                no activity
+              <% end %>
+            </div>
+          </td>
           <td class="d-flex flex-row-reverse">
             <div class="dropdown dropstart p-2">
               <button class="btn btn-outline-dark border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-three-dots-vertical"></i>
               </button>
               <ul class="dropdown-menu">
-                <li><button class="dropdown-item text-primary" type="button">permissions</button></li>
-                <li><button class="dropdown-item text-danger" type="button">remove member</button></li>
+                <% if member.current_user?(current_user) %>
+                  <li>
+                    <%= link_to "leave project", project_member_path(@project, member), class: "dropdown-item text-danger", 
+                                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                  </li>
+                <% else %>
+                  <li><button class="dropdown-item text-primary" type="button">permissions</button></li>
+                  <li>
+                    <%= link_to "remove member", project_member_path(@project, member), class: "dropdown-item text-danger", 
+                                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                  </li>
+                <% end %>
               </ul>
             </div>
           </td>
         </tr>
-        <tr>
       <% end %>
     </tbody>
   </table>

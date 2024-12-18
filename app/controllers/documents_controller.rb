@@ -3,7 +3,11 @@ class DocumentsController < ApplicationController
   before_action :find_document_by_id, only: [ :edit, :update, :show ]
 
   def index
-    @documents = @project.documents
+    if @project
+      @documents = @project.documents
+    else
+      @documents = Document.all
+    end
   end
 
   def new
@@ -47,7 +51,11 @@ class DocumentsController < ApplicationController
   end
 
   def find_project_by_project_id
-    @project = Project.find(params[:project_id])
+    project_id = params[:project_id]
+
+    if project_id
+      @project = Project.find(project_id)
+    end
   end
 
   def find_document_by_id

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable,  :confirmable, :registerable,
          :validatable, :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
-  enum role: { user: 0, admin: 1 }
+  enum role: { user: 0, admin: 1, manager: 2 }
 
   has_one :user_position
   has_one :position, through: :user_position

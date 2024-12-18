@@ -1,18 +1,20 @@
-<div class="dropdown dropstart p-1 align-content-center">
-  <button class="btn btn-outline-dark border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="bi bi-plus-circle-fill"> Headers</i>
+<p class="d-inline-flex ms-2">
+  <button class="btn btn-outline-dark border-0 btn-sm mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#subheader_block_<%= block_id %>" aria-expanded="false" aria-controls="subheaders_blocks_<%= block_id %>">
+    <i class="bi bi-plus-circle-fill"> Subheaders</i>
   </button>
-  <ul class="dropdown-menu">
-    <li><%= link_to "Header 1", 
-      document_blocks_path(params: { block: { block_type: "h1", document_id: document_id} }), 
-      class: "dropdown-item", type: "button", data: { turbo: true, turbo_method: :post } %></li>
-    <li><%= button_to "Header 2", 
-      document_blocks_path, 
-      params: { block: { block_type: "h1", document_id: document_id } }, 
-      class: "dropdown-item" %></li>
-    <li><%= button_to "Header 2", 
-      document_blocks_path, 
-      params: { block: { block_type: "h1", document_id: document_id } }, 
-      class: "dropdown-item" %></li>              
-  </ul>
+</p>
+<div class="collapse multi-collapse" id="subheader_block_<%= block_id %>">
+  <div class="row m-1 border-top border-1 align-items-center">
+      <nav class="nav">
+        <%= link_to "Subheader 1", 
+          document_blocks_path(params: { block: { block_type: "h1", document_id: document_id} }), 
+          class: "nav-link", type: "button", data: { turbo: true, turbo_method: :post } %>
+        <%= link_to "Subheader 2", 
+          document_blocks_path(params: { block: { block_type: "h2", document_id: document_id} }), 
+          class: "nav-link", type: "button", data: { turbo: true, turbo_method: :post } %>
+        <%= link_to "Subheader 3", 
+          document_blocks_path(params: { block: { block_type: "h3", document_id: document_id} }), 
+          class: "nav-link", type: "button", data: { turbo: true, turbo_method: :post } %>        
+      </nav>
+  </div>
 </div>

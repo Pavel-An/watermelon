@@ -16,5 +16,5 @@ application.register("modal", ModalController)
 import NestedFieldsController from "./nested_fields_controller"
 application.register("nested-fields", NestedFieldsController)
 
-import Sortable from '@stimulus-components/sortable'
-application.register('sortable', Sortable)
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)
