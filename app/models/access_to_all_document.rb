@@ -1,0 +1,3 @@
+class AccessToAllDocument < Permission
+
+end

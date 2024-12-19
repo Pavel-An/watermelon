@@ -20,7 +20,11 @@ class ProjectsController < ApplicationController
 
     if @project.save
       flash[:success] = "Project created"
-      @project.members.create(user_id: current_user.id, role: "owner", invited_id: current_user.id )
+      member = @project.members.create(user_id: current_user.id, role: "owner", invited_id: current_user.id )
+      if member.created_at?
+        Permission.create_all(member)
+        member.update_to_project_owner
+      end
       redirect_to @project
     else
       flash.now[:danger] = "Project don\'t created"

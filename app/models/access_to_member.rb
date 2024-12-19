@@ -1,0 +1,3 @@
+class AccessToMember < Permission
+
+end

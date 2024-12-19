@@ -1,0 +1,118 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="modal fade" tabindex="-1" data-controller="modal" data-bs-backdrop="static" data-bs-keyboard="false" >
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <%= form_with url: permissions_member_path(@member, @permissions), method: :patch, scope: "permissions", data: { turbo: false } do |form| %>
+          <div class="modal-header">
+            <h3 class="modal-title fs-5 text-primary">Permissions for <%= @member.name %></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">  
+            <div class="row mb-2">
+              <div class="col">  
+                <h6 class="text-primary fw-semibold" >Project</h6>
+                <hr class="mt-0 mb-2 border-primary">  
+                <%= form.fields_for @member.access_to_project do |access| %>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :create,  class: "form-check-input"  %>
+                    <%= access.label :create, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :view,  class: "form-check-input"  %>
+                    <%= access.label :view, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :edit,  class: "form-check-input"  %>
+                    <%= access.label :edit, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :erase,  class: "form-check-input"  %>
+                    <%= access.label :erase, class: "form-check-label" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>  
+            <div class="row mb-2">
+              <div class="col">  
+                <h6 class="text-primary fw-semibold" >Members</h6>
+                <hr class="mt-0 mb-2 border-primary">  
+                <%= form.fields_for @member.access_to_member do |access| %>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :create,  class: "form-check-input"  %>
+                    <%= access.label :create, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :view,  class: "form-check-input"  %>
+                    <%= access.label :view, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :edit,  class: "form-check-input"  %>
+                    <%= access.label :edit, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :erase,  class: "form-check-input"  %>
+                    <%= access.label :erase, class: "form-check-label" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>  
+            <div class="row mb-2">
+              <div class="col">  
+                <h6 class="text-primary fw-semibold" >Documents</h6>
+                <hr class="mt-0 mb-2 border-primary">  
+                <%= form.fields_for @member.access_to_document do |access| %>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :create,  class: "form-check-input"  %>
+                    <%= access.label :create, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :view,  class: "form-check-input"  %>
+                    <%= access.label :view, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :edit,  class: "form-check-input"  %>
+                    <%= access.label :edit, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :erase,  class: "form-check-input"  %>
+                    <%= access.label :erase, class: "form-check-label" %>
+                  </div>
+                <% end %>
+              </div>
+            </div> 
+            <div class="row mb-2">
+              <div class="col">  
+                <h6 class="text-primary fw-semibold" >All Documents</h6>
+                <hr class="mt-0 mb-2 border-primary">  
+                <%= form.fields_for @member.access_to_all_document do |access| %>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :create,  class: "form-check-input"  %>
+                    <%= access.label :create, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :view,  class: "form-check-input"  %>
+                    <%= access.label :view, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :edit,  class: "form-check-input"  %>
+                    <%= access.label :edit, class: "form-check-label" %>
+                  </div>
+                  <div class="form-check form-switch">
+                    <%= access.check_box :erase,  class: "form-check-input"  %>
+                    <%= access.label :erase, class: "form-check-label" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>          
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <%= form.submit "Add", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+

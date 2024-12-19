@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_17_124032) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_19_060444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_17_124032) do
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.boolean "create", default: false, null: false
+    t.boolean "view", default: false, null: false
+    t.boolean "edit", default: false, null: false
+    t.boolean "erase", default: false, null: false
+    t.string "type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_permissions_on_member_id"
+  end
+
   create_table "phones", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "number", null: false
@@ -165,6 +177,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_17_124032) do
   add_foreign_key "members", "projects"
   add_foreign_key "members", "users"
   add_foreign_key "members", "users", column: "invited_id"
+  add_foreign_key "permissions", "members"
   add_foreign_key "phones", "users"
   add_foreign_key "user_departments", "departments"
   add_foreign_key "user_departments", "users"

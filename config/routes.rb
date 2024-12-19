@@ -26,9 +26,17 @@ Rails.application.routes.draw do
     resources :documents, only: [ :index, :new, :create ]
   end
 
+  resources :members do
+    member do
+      get "/permissions", to: "permissions#edit"
+      patch "/permissions", to: "permissions#update"
+    end
+  end
+
   resources :documents
 
   resources :document_blocks
+
   resources :users, only: [ :show, :edit, :update ] do
     resources :phones, except: [ :index, :show ]
   end

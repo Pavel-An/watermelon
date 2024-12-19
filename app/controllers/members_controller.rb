@@ -17,6 +17,10 @@ class MembersController < ApplicationController
 
       if @members.save
         flash[:success] = "Member(s) added"
+
+        Permission.create_all(@members)
+        @members.update_to_project_member
+
       else
         flash.now[:danger] = "Member(s) not added"
       end
@@ -29,14 +33,17 @@ class MembersController < ApplicationController
   end
 
   def update
-    @member.update(member_params)
+    unless @member.role == member_params[:role]
+      @member.update(member_params)
 
-    if @member.save
-      flash[:success] = "Member #{@member.name} updated"
-    else
-      flash.now[:danger] = "Member #{@member.name} not updated"
+      if @member.save
+        flash[:success] = "Member #{@member.name} updated"
+        @member.send("update_to_project_#{member_params[:role]}") 
+      else
+        flash.now[:danger] = "Member #{@member.name} not updated"
+      end
     end
-
+    
     redirect_to action: "index"
   end
 

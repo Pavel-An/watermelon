@@ -53,7 +53,7 @@
             <div>
               <i class="bi bi-person-plus" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Member added"></i> 
               <%= member.created_at.strftime("%b %d, %Y") %>
-            <div>
+            </div>
             <div>
               <i class="bi bi-clock" data-controller="test" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Last activity in project"></i> 
               <% unless member.last_activity.blank? %>
@@ -63,25 +63,29 @@
               <% end %>
             </div>
           </td>
-          <td class="d-flex flex-row-reverse">
-            <div class="dropdown dropstart p-2">
-              <button class="btn btn-outline-dark border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-three-dots-vertical"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <% if member.current_user?(current_user) %>
-                  <li>
-                    <%= link_to "leave project", project_member_path(@project, member), class: "dropdown-item text-danger", 
-                                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-                  </li>
-                <% else %>
-                  <li><button class="dropdown-item text-primary" type="button">permissions</button></li>
-                  <li>
-                    <%= link_to "remove member", project_member_path(@project, member), class: "dropdown-item text-danger", 
-                                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-                  </li>
-                <% end %>
-              </ul>
+          <td>
+            <div class="d-flex flex-row-reverse">
+              <div class="dropdown dropstart p-2">
+                <button class="btn btn-outline-dark border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <% if member.current_user?(current_user) %>
+                    <li>
+                      <%= link_to "leave project", project_member_path(@project, member), class: "dropdown-item text-danger", 
+                                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                    </li>
+                  <% else %>
+                    <li>
+                      <%= link_to "permissions", permissions_member_path(member), class: "dropdown-item text-primary" %>
+                    </li>
+                    <li>
+                      <%= link_to "remove member", project_member_path(@project, member), class: "dropdown-item text-danger", 
+                                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
             </div>
           </td>
         </tr>
