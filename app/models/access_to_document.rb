@@ -1,3 +1,0 @@
-class AccessToDocument < Permission
-
-end

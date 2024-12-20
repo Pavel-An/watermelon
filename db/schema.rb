@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_19_060444) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_20_123311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,22 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_19_060444) do
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
+  create_table "member_permissions", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.jsonb "permissions", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_member_permissions_on_member_id"
+  end
+
+  create_table "member_role_permissions", force: :cascade do |t|
+    t.string "name"
+    t.jsonb "permissions", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "constraints", default: {}, null: false
+  end
+
   create_table "members", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
@@ -95,15 +111,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_19_060444) do
   end
 
   create_table "permissions", force: :cascade do |t|
-    t.bigint "member_id", null: false
-    t.boolean "create", default: false, null: false
-    t.boolean "view", default: false, null: false
-    t.boolean "edit", default: false, null: false
-    t.boolean "erase", default: false, null: false
-    t.string "type", null: false
+    t.string "name"
+    t.bigint "type_permission_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_permissions_on_member_id"
+    t.index ["type_permission_id"], name: "index_permissions_on_type_permission_id"
   end
 
   create_table "phones", force: :cascade do |t|
@@ -126,6 +138,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_19_060444) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "type_permissions", force: :cascade do |t|
+    t.string "name"
+    t.bigint "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["position"], name: "index_type_permissions_on_position"
   end
 
   create_table "user_departments", force: :cascade do |t|
@@ -174,10 +194,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_19_060444) do
   add_foreign_key "document_blocks", "documents"
   add_foreign_key "documents", "projects"
   add_foreign_key "documents", "users"
+  add_foreign_key "member_permissions", "members"
   add_foreign_key "members", "projects"
   add_foreign_key "members", "users"
   add_foreign_key "members", "users", column: "invited_id"
-  add_foreign_key "permissions", "members"
+  add_foreign_key "permissions", "type_permissions"
   add_foreign_key "phones", "users"
   add_foreign_key "user_departments", "departments"
   add_foreign_key "user_departments", "users"
