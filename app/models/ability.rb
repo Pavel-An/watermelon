@@ -9,7 +9,7 @@ class Ability
     can :destroy, Project, members: { user: user, role: "owner" }
 
     Rails.logger.info "Member: #{@project}"
-    can :read, Project, members if Member.find_by(user_id: user.id).has_action?(:members, :view)
+    # can :show, Project, members if Member.find_by(user_id: user.id).has_action?(:members, :view)
 
 
     return unless user.manager? || user.admin?
