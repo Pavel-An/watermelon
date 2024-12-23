@@ -2,23 +2,23 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
+    return unless user.present?
+
+    can :read, Project, members: { user: user } 
+    can :update, Project, members: { user: user, role: ["administrator", "owner" ] }
+    can :destroy, Project, members: { user: user, role: "owner" }
+
+    Rails.logger.info "Member: #{@project}"
+    can :read, Project, members if Member.find_by(user_id: user.id).has_action?(:members, :view)
 
 
-    can :read, Project
-    if user.admin?
-      can :access, :rails_admin 
-      can :manage, :all     
-    elsif user.manager?
-      can :create, Project
-    end
+    return unless user.manager? || user.admin?
 
+    can :create, Project
+
+    return unless user.admin?
+
+    can :access, :rails_admin 
+    can :manage, :all
   end
 end

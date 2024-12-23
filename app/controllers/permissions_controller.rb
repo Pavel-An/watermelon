@@ -9,7 +9,10 @@ class PermissionsController < ApplicationController
   end
 
   def update
-    logger.info "#{permissions_params}"
+    @member.member_permission.update(permissions: permissions_params)
+
+    redirect_to project_members_path(@member.project)
+  
   end
 
   def find_member
@@ -19,6 +22,6 @@ class PermissionsController < ApplicationController
   private
 
   def permissions_params
-    params.require(:permissions).permit(:documents)
+    params.require(:permissions).permit(:role, documents: [], members: [], project: [])
   end
 end

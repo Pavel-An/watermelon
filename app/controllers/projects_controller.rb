@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project created"
       member = @project.members.create(user_id: current_user.id, role: "owner", invited_id: current_user.id )
       if member.created_at?
-        member.create_member_permission(permissions: {})
+        member.create_member_permission(permissions: {role: "role: #{member.role}"})
       end
       redirect_to @project
     else

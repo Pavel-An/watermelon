@@ -22,4 +22,16 @@ class Member < ApplicationRecord
   def current_user?(object)
     user == object
   end
+
+  def has_action?(scope, action)
+    permissions_role = MemberRolePermission.find_by(name: role).permissions
+    permissions = permissions_role.merge(member_permission.permissions){ |key, old, new| old.union(new)}
+
+    result = 
+      if permissions.include?(scope.to_s)
+        permissions[scope.to_s].include?(action.to_s)
+      else 
+        false
+      end
+  end
 end

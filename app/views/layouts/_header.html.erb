@@ -9,7 +9,7 @@
         <li class="nav-item">
           <%= link_to t("documents"), documents_path, class: "nav-link active"%>
         </li>
-        <% if can? :access, :rails_admin %>
+        <% if can? :access, :rails_admin  %>
           <li class="nav-item">
             <%= link_to t("administration"), rails_admin.dashboard_path, class: "nav-link active"%>
           </li>

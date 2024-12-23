@@ -2,8 +2,11 @@ class MembersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_project_by_project_id, only: [ :index, :new, :create, :destroy ]
   before_action :find_member, only: [ :update, :destroy ]
+  load_and_authorize_resource :project
+  load_and_authorize_resource :members, through: :project
 
   def index
+     
     @members = @project.members
   end
 
@@ -17,7 +20,7 @@ class MembersController < ApplicationController
 
       if @members.save
         flash[:success] = "Member(s) added"
-        @members.create_member_permission(permissions: {})
+        @members.create_member_permission(permissions: {role: "#{@members.role}"})
       else
         flash.now[:danger] = "Member(s) not added"
       end
@@ -31,9 +34,9 @@ class MembersController < ApplicationController
 
   def update
     unless @member.role == member_params[:role]
-      @member.update(member_params)
 
-      if @member.save
+      if  @member.update(member_params)
+        @member.member_permission.update(permissions: {role: "#{@member.role}"})
         flash[:success] = "Member #{@member.name} updated"
       else
         flash.now[:danger] = "Member #{@member.name} not updated"
