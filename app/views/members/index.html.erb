@@ -38,15 +38,17 @@
             <div><%= member.invited.full_name %></div>
           </td>
           <td>
-            <% if member.current_user?(current_user) %>
+            <% if member.current_user?(current_user)%>
               <%= member.role %>
-            <% else %>
+            <% elsif can? :update, Member %>
               <div class="btn-group">
                 <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <%= member.role %>
                 </button>
                   <%= render partial: "roles", locals: { member: member } %>
               </div>
+            <% else %>
+              <%= member.role %>
             <% end %>
           </td>
           <td>
@@ -80,8 +82,10 @@
                       <%= link_to "permissions", permissions_member_path(member), class: "dropdown-item text-primary" %>
                     </li>
                     <li>
+                      <% if can? :destroy, member %>
                       <%= link_to "remove member", project_member_path(@project, member), class: "dropdown-item text-danger", 
                                   data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                      <% end %>
                     </li>
                   <% end %>
                 </ul>

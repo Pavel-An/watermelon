@@ -15,13 +15,17 @@ class PermissionsController < ApplicationController
   
   end
 
+  private
+
   def find_member
     @member = Member.find(params[:id])
   end
 
-  private
-
   def permissions_params
     params.require(:permissions).permit(:role, documents: [], members: [], project: [])
+  end
+
+  def current_member
+    @current_member = @member
   end
 end

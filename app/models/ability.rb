@@ -1,16 +1,22 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user,  member = nil )
     return unless user.present?
 
-    can :read, Project, members: { user: user } 
+    can :read, Project, members: { user: user} 
     can :update, Project, members: { user: user, role: ["administrator", "owner" ] }
     can :destroy, Project, members: { user: user, role: "owner" }
 
-    Rails.logger.info "Member: #{@project}"
-    # can :show, Project, members if Member.find_by(user_id: user.id).has_action?(:members, :view)
-
+    Rails.logger.debug "START MEMBER_DEBUG: #{member}"
+    if member
+      can :read, Member if member.has_action?(:members, :view)
+      can :create, Member if member.has_action?(:members, :create)
+      can :update, Member if member.has_action?(:members, :update)
+      can :destroy, Member if member.has_action?(:members, :destroy)
+    end
+    Rails.logger.debug "STOP MEMBER_DEBUG: #{member}"
+   
 
     return unless user.manager? || user.admin?
 

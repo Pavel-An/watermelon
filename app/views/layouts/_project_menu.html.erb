@@ -6,15 +6,21 @@
     <li class="nav-item">
       <%= link_to "Documents", project_documents_path(@project), class: "nav-link" %>
     </li>
-    <li class="nav-item">
-      <%= link_to "Members", project_members_path(@project), class: "nav-link" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Edit", edit_project_path(@project), class: "nav-link" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Delete", project_path(@project), class: "nav-link link-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    </li>
+    <% if can? :read, Member %>
+      <li class="nav-item">
+        <%= link_to "Members", project_members_path(@project), class: "nav-link" %>
+      </li>
+    <% end %>
+    <% if can? :update, @project %>
+      <li class="nav-item">
+        <%= link_to "Edit", edit_project_path(@project), class: "nav-link" %>
+      </li>
+    <% end %>
+    <% if can? :destroy, @project %>
+      <li class="nav-item">
+        <%= link_to "Delete", project_path(@project), class: "nav-link link-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      </li>
+    <% end %>
   </ul>
 </div>
    

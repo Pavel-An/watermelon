@@ -1,7 +1,9 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_project_dy_id, only: [ :show, :edit, :update, :destroy ]
+  before_action :current_member, except: [ :index, :new, :create ]
   load_and_authorize_resource
+  skip_authorize_resource only: :index
 
   def index
     if current_user.admin?

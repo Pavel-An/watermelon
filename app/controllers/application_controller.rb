@@ -19,4 +19,18 @@ class ApplicationController < ActionController::Base
   end
 
 
+
+  private
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user, current_member)
+  end
+
+  def current_member
+    if @project
+      @project.member(current_user) 
+    elsif @member
+      @member
+    end
+  end
 end

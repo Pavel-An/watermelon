@@ -2,11 +2,10 @@ class MembersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_project_by_project_id, only: [ :index, :new, :create, :destroy ]
   before_action :find_member, only: [ :update, :destroy ]
-  load_and_authorize_resource :project
-  load_and_authorize_resource :members, through: :project
+  load_and_authorize_resource
+
 
   def index
-     
     @members = @project.members
   end
 
